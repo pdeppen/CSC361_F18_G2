@@ -16,7 +16,7 @@ public class CanyonBunnyMain implements ApplicationListener
 	
 	private com.mygdx.game.WorldController worldController;
 	private WorldRenderer worldRenderer;
-	
+	private boolean paused;
 	
 	@Override public void create () 
 	{ 
@@ -40,8 +40,17 @@ public class CanyonBunnyMain implements ApplicationListener
 		// Render game world to screen
 		worldRenderer.render();
 	}
-	@Override public void resize (int width, int height) { }
+	
+	@Override public void resize (int width, int height) 
+	{
+		worldRenderer.resize(width, height);
+	}
+	
 	@Override public void pause () { }
 	@Override public void resume () { }
-	@Override public void dispose () { }
+	
+	@Override public void dispose () 
+	{
+		worldRenderer.dispose();
+	}
 }
