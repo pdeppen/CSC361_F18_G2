@@ -59,6 +59,16 @@ public class WorldController {
 	private Pixmap createProceduralPixmap (int width, int height) {
 		Pixmap pixmap = new Pixmap(width, height, Format.RGBA8888);
 		// Fill square with red color at 50% opacity
+		pixmap.setColor(1, 0, 0, 0.5f);
+		pixmap.fill();
+		// Draw a yellow-colored X shape on square
+		pixmap.setColor(1, 1, 0, 1);
+		pixmap.drawLine(0, 0, width, height);
+		pixmap.drawLine(width, 0, 0, height);
+		// Draw a cyan-colored border around square
+		pixmap.setColor(0, 1, 1, 1);
+		pixmap.drawRectangle(0, 0, width, height);
+		return pixmap;
 	}
 	
 	/**
@@ -67,6 +77,17 @@ public class WorldController {
 	 * @param deltaTime
 	 */
 	public void update(float deltaTime) {
-		
+		updateTestObjects(deltaTime);
+	}
+	
+	private void updateTestObjects(float deltaTime) {
+		// Get current rotation from selected sprite
+		float rotation = testSprites[selectedSprite].getRotation();
+		// Rotate sprite by 90 degrees per second
+		rotation += 90 * deltaTime;
+		// Wrap around at 360 degrees
+		rotation %= 360;
+		// Set new rotation value to selected sprite
+		testSprites[selectedSprite].setRotation(rotation);
 	}
 }
