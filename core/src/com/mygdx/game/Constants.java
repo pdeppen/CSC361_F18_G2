@@ -1,6 +1,6 @@
 package com.mygdx.game;
 /**
- * Owen Burnham
+ * Owen Burnham 
  */
 public class Constants 
 {
