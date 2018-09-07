@@ -11,7 +11,7 @@ import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 
-public class WorldController {
+public class WorldController extends InputAdapter {
 	
 	private static final String TAG = 
 		WorldController.class.getName();
@@ -30,6 +30,7 @@ public class WorldController {
 	 * internal init (useful when reseting an object) 
 	 */
 	public void init() {
+		Gdx.input.setInputProcessor(this);
 		initTestObjects();
 	}
 	
@@ -117,5 +118,20 @@ public class WorldController {
 		rotation %= 360;
 		// Set new rotation value to selected sprite
 		testSprites[selectedSprite].setRotation(rotation);
+	}
+	
+	@Override
+	public boolean keyUp (int keycode) {
+		// Reset game world
+		if (keycode == Keys.R) {
+			init();
+			Gdx.app.debug(TAG, "Game world resetted");
+		}
+		// Select next sprite
+		else if (keycode == Keys.SPACE) {
+			selectedSprite = (selectedSprite + 1) % testSprites.length;
+			Gdx.app.debug(TAG, "Sprite #" + selectedSprite + " selected");
+		}
+		return false;
 	}
 }
