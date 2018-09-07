@@ -1,3 +1,6 @@
+/**
+ * Philip Deppen
+ */
 package com.mygdx.game;
 /** will need to create package for this */
 /** testing */
@@ -10,6 +13,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
+import com.packtpub.libgdx.canyonbunny.util.CameraHelper;
 
 public class WorldController extends InputAdapter {
 	
@@ -18,6 +22,7 @@ public class WorldController extends InputAdapter {
 	
 	public Sprite[] testSprites;
 	public int selectedSprite;
+	public CameraHelper cameraHelper;
 	
 	/**
 	 * constructor 
@@ -31,6 +36,7 @@ public class WorldController extends InputAdapter {
 	 */
 	public void init() {
 		Gdx.input.setInputProcessor(this);
+		cameraHelper = new CameraHelper();
 		initTestObjects();
 	}
 	
@@ -84,6 +90,7 @@ public class WorldController extends InputAdapter {
 	public void update(float deltaTime) {
 		handleDebugInput(deltaTime);
 		updateTestObjects(deltaTime);
+		cameraHelper.update(deltaTime);
 	}
 	
 	private void handleDebugInput (float deltaTime) {
