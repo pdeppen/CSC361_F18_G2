@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputAdapter;
 
 public class WorldController {
 	
@@ -101,6 +102,10 @@ public class WorldController {
 		
 		if (Gdx.input.isKeyPressed(Keys.S)) 
 			moveSelectedSprite(0, -sprMoveSpeed);
+	}
+	
+	private void moveSelectedSprite (float x, float y) {
+		testSprites[selectedSprite].translate(x, y);
 	}
 	
 	private void updateTestObjects(float deltaTime) {
