@@ -1,11 +1,12 @@
 package com.packtpub.libgdx.canyonbunny;
 
 import com.badlogic.gdx.ApplicationListener;
-import com.packtpub.libgdx.canyonbunny.game.WorldController;
-import com.packtpub.libgdx.canyonbunny.game.WorldRenderer;
+
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.mygdx.game.WorldController;
+import com.mygdx.game.WorldRenderer;
 /**
  * @author Owen Burnham
  */

@@ -1,6 +1,7 @@
 package com.mygdx.game;
-/**
- * Owen Burnham 
+/*  Tyler Major
+ *  pg 113 
+ *  9/7/2018
  */
 public class Constants 
 {
