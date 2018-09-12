@@ -1,3 +1,6 @@
+/**
+ * Philip Deppen
+ */
 package com.packtpub.libgdx.canyonbunny;
 
 import com.badlogic.gdx.Gdx;
@@ -7,6 +10,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.mygdx.game.Constants;
 
 public class Assets implements Disposable, AssetErrorListener {
@@ -35,18 +40,49 @@ public class Assets implements Disposable, AssetErrorListener {
 			Gdx.app.debug(TAG, "asset: " + a);
 	}
 	
+	/**
+	 * disposes objects after they're done being used
+	 */
 	@Override
 	public void dispose() {
 		assetManager.dispose();
 	}
 	
+	/**
+	 * Handles an error
+	 * @param filename
+	 * @param type
+	 * @param throwable
+	 */
 	@Override
 	public void error (String filename, Class type, Throwable throwable) {
 		Gdx.app.error(TAG, "Couldn't load asset: '" + filename + "'", (Exception)throwable);
 	}
 	
+	/**
+	 * handles an error
+	 */
 	@Override
 	public void error (AssetDescriptor asset, Throwable throwable) {
 		Gdx.app.error(TAG, "Couldn't load asset '" + asset.fileName + "'", (Exception)throwable);
+	}
+	
+	public class AssetLevelDecoration {
+		public final AtlasRegion cloud01;
+		public final AtlasRegion cloud02;
+		public final AtlasRegion cloud03;
+		public final AtlasRegion mountainLeft;
+		public final AtlasRegion mountainRight;
+		public final AtlasRegion waterOverlay;
+		
+		public AssetLevelDecoration (TextureAtlas atlas) {
+			cloud01 = atlas.findRegion("cloud01");
+			cloud02 = atlas.findRegion("cloud02");
+			cloud03 = atlas.findRegion("cloud03");
+			mountainLeft = atlas.findRegion("mountain_left");
+			mountainRight = atlas.findRegion("mountain_right");
+			waterOverlay = atlas.findRegion("water_overlay");
+		}
+		
 	}
 }
