@@ -18,7 +18,7 @@ Settings;
  */
 public class DesktopLauncher
 {
-	private static boolean rebuildAtlas = true;
+	private static boolean rebuildAtlas = false;
 	private static boolean drawDebugOutline = true;
 	
 	/**
@@ -35,7 +35,9 @@ public class DesktopLauncher
 			settings.maxHeight = 1024;
 			settings.duplicatePadding = false;
 			settings.debug = drawDebugOutline;
-			TexturePacker.process(settings, "assets-raw/images", "../CanyonBunny-android/assets/images", "canyonbunny.pack");
+			
+			/* settings, input, output, packfilename */
+			TexturePacker.process(settings, "assets-raw/images", "../core/assets/images", "canyonbunny.pack");
 		}
 		
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();

@@ -2,7 +2,6 @@ package com.packtpub.libgdx.canyonbunny;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.assets.AssetManager;
-import com.packtpub.libgdx.canyonbunny.game.Assets;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;

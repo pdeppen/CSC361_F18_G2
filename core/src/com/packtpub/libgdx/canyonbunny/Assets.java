@@ -35,6 +35,7 @@ public class Assets implements Disposable, AssetErrorListener {
 		this.assetManager = assetManager;
 		// set asset manager error handler
 		assetManager.setErrorListener(this);
+		assetManager.load("badlogic.jpg",Texture.class);
 		// load texture atlas
 		assetManager.load(Constants.TEXTURE_ATLAS_OBJECTS, TextureAtlas.class);
 		// start loading assets and wait until finished
