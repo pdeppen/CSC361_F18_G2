@@ -74,7 +74,6 @@ public class Assets implements Disposable, AssetErrorListener {
 	 * @param type
 	 * @param throwable
 	 */
-	@Override
 	public void error (String filename, Class type, Throwable throwable) {
 		Gdx.app.error(TAG, "Couldn't load asset: '" + filename + "'", (Exception)throwable);
 	}
@@ -87,7 +86,8 @@ public class Assets implements Disposable, AssetErrorListener {
 		Gdx.app.error(TAG, "Couldn't load asset '" + asset.fileName + "'", (Exception)throwable);
 	}
 	
-	public class AssetLevelDecoration {
+	public class AssetLevelDecoration 
+	{
 		public final AtlasRegion cloud01;
 		public final AtlasRegion cloud02;
 		public final AtlasRegion cloud03;
@@ -95,7 +95,8 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final AtlasRegion mountainRight;
 		public final AtlasRegion waterOverlay;
 		
-		public AssetLevelDecoration (TextureAtlas atlas) {
+		public AssetLevelDecoration (TextureAtlas atlas) 
+		{
 			cloud01 = atlas.findRegion("cloud01");
 			cloud02 = atlas.findRegion("cloud02");
 			cloud03 = atlas.findRegion("cloud03");
@@ -105,4 +106,40 @@ public class Assets implements Disposable, AssetErrorListener {
 		}
 		
 	}
+	
+	//Tyler Major: Class that loads the bunny head
+	public class AssetBunny{
+		public final AtlasRegion head;
+		
+		public AssetBunny (TextureAtlas atlas) {
+			head = atlas.findRegion("bunny_head");
+		}
+	}
+	
+	//Tyler Major: Class that loads the rock edge image and rock middle image
+	public class AssetRock {
+		public final AtlasRegion edge;
+		public final AtlasRegion middle;
+		public AssetRock (TextureAtlas atlas) {
+			edge = atlas.findRegion("rock_edge");
+			middle = atlas.findRegion("rock_middle");
+		}
+	}
+	
+	//Tyler Major: Class that loads the gold coin image
+	public class AssetGoldCoin {
+		public final AtlasRegion goldCoin;
+		public AssetGoldCoin (TextureAtlas atlas) {
+		goldCoin = atlas.findRegion("item_gold_coin");
+		}
+	}
+	
+	//Tyler Major: Class that loads the feather image
+	public class AssetFeather {
+		public final AtlasRegion feather;
+		public AssetFeather (TextureAtlas atlas) {
+		feather = atlas.findRegion("item_feather");
+		}
+		}
+	
 }
