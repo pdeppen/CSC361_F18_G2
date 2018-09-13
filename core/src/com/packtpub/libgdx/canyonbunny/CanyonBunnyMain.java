@@ -10,9 +10,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.mygdx.game.WorldController;
 import com.mygdx.game.WorldRenderer;
 /**
- * @author Owen Burnham
+ * @author Owen Burnham 
+ * Note this is is under branch p157_CanyonBunnyMain but also
+ * does the job of p158_CanyonBunnyMain
  * Edited by Owen Burnham in Assigment 3
- * This class
+ * This class has the major credentials for the game
+ * in order for it to run and update as needed
  */
 public class CanyonBunnyMain implements ApplicationListener
 {
