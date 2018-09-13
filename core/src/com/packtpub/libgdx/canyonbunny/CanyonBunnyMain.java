@@ -2,6 +2,7 @@ package com.packtpub.libgdx.canyonbunny;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.packtpub.libgdx.canyonbunny.game.Assets;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
@@ -10,6 +11,8 @@ import com.mygdx.game.WorldController;
 import com.mygdx.game.WorldRenderer;
 /**
  * @author Owen Burnham
+ * Edited by Owen Burnham in Assigment 3
+ * This class
  */
 public class CanyonBunnyMain implements ApplicationListener
 {
@@ -20,10 +23,17 @@ public class CanyonBunnyMain implements ApplicationListener
 	private WorldRenderer worldRenderer;
 	private boolean paused;
 	
+	/**
+	 * This creates and initializes the controller and renderer
+	 * Will also ensure the game world is active on start and that
+	 * the assets are loaded in
+	 */
 	@Override public void create () 
 	{ 
 		// Set Libgdx log level to DEBUG
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
+		// Load assets
+		Assets.instance.init(new AssetManager());
 		// Initialize controller and renderer
 		worldController = new WorldController();
 		worldRenderer = new WorldRenderer(worldController);
@@ -33,6 +43,9 @@ public class CanyonBunnyMain implements ApplicationListener
 		Assets.instance.init(new AssetManager());
 	}
 	
+	/**
+	 * Game is rendered and updated when needed
+	 */
 	@Override public void render () 
 	{ 
 		// Do not update game world when paused.
@@ -50,21 +63,33 @@ public class CanyonBunnyMain implements ApplicationListener
 		worldRenderer.render();
 	}
 	
+	/**
+	 * This method resizes the world renderer as needed
+	 */
 	@Override public void resize (int width, int height) 
 	{
 		worldRenderer.resize(width, height);
 	}
 	
+	/**
+	 * This method pauses the game
+	 */
 	@Override public void pause () 
 	{ 
 		paused = true;
 	}
 	
+	/**
+	 * This method resumes the game
+	 */
 	@Override public void resume () 
 	{ 
 		paused = false;
 	}
 	
+	/**
+	 * This method disposes the worldRenderer as needed
+	 */
 	@Override public void dispose () 
 	{
 		worldRenderer.dispose();
