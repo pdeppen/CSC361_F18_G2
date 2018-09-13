@@ -1,6 +1,7 @@
 package com.packtpub.libgdx.canyonbunny;
 
 import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.assets.AssetManager;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
@@ -28,6 +29,8 @@ public class CanyonBunnyMain implements ApplicationListener
 		worldRenderer = new WorldRenderer(worldController);
 		// Game world is active on start
 		paused = false;
+		// Load assets
+		Assets.instance.init(new AssetManager());
 	}
 	
 	@Override public void render () 
@@ -65,5 +68,6 @@ public class CanyonBunnyMain implements ApplicationListener
 	@Override public void dispose () 
 	{
 		worldRenderer.dispose();
+		Assets.instance.dispose();
 	}
 }
