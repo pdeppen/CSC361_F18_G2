@@ -28,4 +28,20 @@ public abstract class AbstractGameObject
 		scale = new Vector2(1, 1);
 		rotation = 0;
 	}
+	
+	/**
+	 * @param deltaTime
+	 * updates objects accordingly in relevance 
+	 * to the delat time
+	 */
+	public void update(float deltaTime) 
+	{
+		
+	}
+	
+	/**
+	 * @param batch
+	 * objects are rendered accordingly
+	 */
+	public abstract void render(SpriteBatch batch);
 }
