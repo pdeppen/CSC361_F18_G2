@@ -30,9 +30,39 @@ public class Assets implements Disposable, AssetErrorListener {
 	public AssetGoldCoin goldCoin;
 	public AssetFeather feather;
 	public AssetLevelDecoration levelDecoration;
+	public AssetFonts fonts;
 	
 	// singleton: prevent instantiation from other classes
 	private Assets() {}
+	
+	/**
+	 * Made by Owen Burnahm (Assignment 4)
+	 * Creates the three fonts, small, normal, and big, and
+	 * gives them the appropriate properties
+	 */
+	public AssetFonts() 
+	{
+		// create three fonts using Libgdx's 15px bitmap font
+		defaultSmall = new BitmapFont(
+				Gdxfiles.internal("images/arial-15.fnt"), true);
+		defaultNormal = new BitmapFont(
+				Gdxfiles.internal("images/arial-15.fnt"), true);
+		defaultBig = new BitmapFont(
+				Gdxfiles.internal("images/arial-15.fnt"), true);
+		
+		// set font sizes
+		defaultSmall.setScale(0.75f);
+		defaultNormal.setScale(1.0f);
+		defaultBig.setScale(2.0f);
+		
+		// enable linear texture filtering for smooth fonts
+		defaultSmall.getRegion().getTexture().setFilter(
+				TextureFilter.Linear, TextureFilter.Linear);
+		defaultNormal.getRegion().getTexture().setFilter(
+				TextureFilter.Linear, TextureFilter.Linear);
+		defaultBig.getRegion().getTexture().setFilter(
+				TextureFilter.Linear, TextureFilter.Linear);
+	}
 	
 	public void init (AssetManager assetManager) {
 		this.assetManager = assetManager;
