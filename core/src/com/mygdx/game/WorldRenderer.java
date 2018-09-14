@@ -44,6 +44,7 @@ public class WorldRenderer implements Disposable
 	public void render () 
 	{ 
 		renderWorld(batch);	   //Tyler: Now calls render method of level to draw all game objects
+		renderGui(batch);      //Tyler: pg193 renders the GUI
 	}
 		
 	public void resize (int width, int height) 
@@ -128,6 +129,21 @@ public class WorldRenderer implements Disposable
 		fpsFont.draw(batch, "FPS: " + fps, x, y);
 		fpsFont.setColor(1, 1, 1, 1); // white
 		}
+	
+	//Tyler: pg193 draws icons to GUI
+	private void renderGui (SpriteBatch batch) 
+	{
+		batch.setProjectionMatrix(cameraGUI.combined);
+		batch.begin();
+		// draw collected gold coins icon + text
+		// (anchored to top left edge)
+		renderGuiScore(batch);
+		// draw extra lives icon + text (anchored to top right edge)
+		renderGuiExtraLive(batch);
+		// draw FPS text (anchored to bottom right edge)
+		renderGuiFpsCounter(batch);
+		batch.end();
+	}
 	
 	
 }
