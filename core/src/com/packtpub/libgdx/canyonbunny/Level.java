@@ -141,6 +141,24 @@ public class Level
 			Gdx.app.debug(TAG, "level '" + filename + "' loaded");
 		}
 		
-		public void render (SpriteBatch batch) {}
+		//Render matches lastPixel with currentPixel and used to detect rock pixels/colors.
+		public void render (SpriteBatch batch) 
+		{
+			// Draw Mountains
+			mountains.render(batch);
+			
+			// Draw Rocks
+			for (Rock rock : rocks)
+				
+			rock.render(batch);
+			// Draw Water Overlay
+			waterOverlay.render(batch);
+			
+			// Draw Clouds
+			clouds.render(batch);
+			}
+			
+			
+		}
 		
 }
