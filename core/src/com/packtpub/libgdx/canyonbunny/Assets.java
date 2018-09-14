@@ -86,6 +86,7 @@ public class Assets implements Disposable, AssetErrorListener {
 		}
 		
 		// create game resource objects
+		fonts = new AssetFonts();
 		bunny = new AssetBunny(atlas);
 		rock = new AssetRock(atlas);
 		goldCoin = new AssetGoldCoin(atlas);
@@ -94,11 +95,15 @@ public class Assets implements Disposable, AssetErrorListener {
 	}
 	
 	/**
+	 * Updated by Owen Burnham (Assignment 4)
 	 * disposes objects after they're done being used
 	 */
 	@Override
 	public void dispose() {
 		assetManager.dispose();
+		fonts.defaultSmall.dispose();
+		fonts.defaultNormal.dispose();
+		fonts.defaultBig.dispose();
 	}
 	
 	/**
