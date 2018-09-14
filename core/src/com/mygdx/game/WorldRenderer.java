@@ -28,21 +28,9 @@ public class WorldRenderer implements Disposable
 	
 	public void render () 
 	{ 
-		renderTestObjects();
+		renderWorld(batch);	   //Tyler: Now calls render method of level to draw all game objects
 	}
-	
-	private void renderTestObjects() 
-	{
-		worldController.cameraHelper.applyTo(camera);
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-		for(Sprite sprite : worldController.testSprites) 
-		{
-		sprite.draw(batch);
-		}
-		batch.end();
-	}
-	
+		
 	public void resize (int width, int height) 
 	{ 
 		camera.viewportWidth = (Constants.VIEWPORT_HEIGHT / height) *
@@ -54,6 +42,16 @@ public class WorldRenderer implements Disposable
 	@Override public void dispose () 
 	{ 
 		batch.dispose();
+	}
+	
+	//Tyler Major: Added pg 185-186
+	private void renderWorld (SpriteBatch batch) 
+	{
+		worldController.cameraHelper.applyTo(camera);
+		batch.setProjectionMatrix(camera.combined);
+		batch.begin();
+		worldController.level.render(batch);
+		batch.end();
 	}
 	
 	
