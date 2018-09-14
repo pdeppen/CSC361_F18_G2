@@ -4,6 +4,12 @@ package com.mygdx.game;
  *  9/7/2018
  *  
  *  new code added 9/13 from pg162
+ *  
+ *  Edited by Owen Burnham for Assignment 4
+ */
+/**
+ * @author Edited by Owen Burnham (Assignment 4)
+ *
  */
 public class Constants 
 {
