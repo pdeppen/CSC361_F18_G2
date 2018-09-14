@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
@@ -101,6 +102,32 @@ public class WorldRenderer implements Disposable
 			batch.setColor(1, 1, 1, 1);
 		}
 	}
+	
+	//Tyler: pg192 added frame rate counter to GUI to display
+	private void renderGuiFpsCounter (SpriteBatch batch)
+	{
+		float x = cameraGUI.viewportWidth - 55;
+		float y = cameraGUI.viewportHeight - 15;
+		int fps = Gdx.graphics.getFramesPerSecond();
+		BitmapFont fpsFont = Assets.instance.fonts.defaultNormal;
+		if (fps >= 45) 
+		{
+			// 45 or more FPS show up in green
+			fpsFont.setColor(0, 1, 0, 1);
+		} 
+		else if (fps >= 30)
+		{
+			// 30 or more FPS show up in yellow
+			fpsFont.setColor(1, 1, 0, 1);
+		} 
+		else 
+		{
+			// less than 30 FPS show up in red
+			fpsFont.setColor(1, 0, 0, 1);
+		}
+		fpsFont.draw(batch, "FPS: " + fps, x, y);
+		fpsFont.setColor(1, 1, 1, 1); // white
+		}
 	
 	
 }
