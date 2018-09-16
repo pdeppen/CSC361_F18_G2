@@ -2,7 +2,8 @@ package com.packtpub.libgdx.canyonbunny;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.packtpub.libgdx.canyonbunny.game.Assets;
+import com.packtpub.libgdx.canyonbunny.Assets;
+import com.packtpub.libgdx.canyonbunny.game.objects.AbstractGameObject;
 
 /* @author: Tyler Major
  * pg 171 and 172 creates the mountain class 
@@ -16,6 +17,7 @@ public class Mountains extends AbstractGameObject
 	private TextureRegion regMountainLeft;
 	private TextureRegion regMountainRight;
 	private int length;
+	
 	public Mountains (int length) 
 	{
       this.length = length;
