@@ -6,7 +6,6 @@ package com.mygdx.game;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
-import com.packtpub.libgdx.canyonbunny.Assets;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;

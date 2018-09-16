@@ -1,21 +1,25 @@
+package com.packtpub.libgdx.canyonbunny.util;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetDescriptor;
+import com.badlogic.gdx.assets.AssetErrorListener;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.utils.Disposable;
+import com.packtpub.libgdx.canyonbunny.util.Constants;
+
+
+
+
 /**
  * Philip Deppen
  * Updated by Owen Burnham (Assignment 4)
  */
-package com.packtpub.libgdx.canyonbunny;
 
-import com.badlogic.gdx.Gdx;
-
-import com.badlogic.gdx.assets.AssetDescriptor;
-import com.badlogic.gdx.assets.AssetErrorListener;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.utils.Disposable;
-import com.packtpub.libgdx.canyonbunny.util.Constants;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class Assets implements Disposable, AssetErrorListener {
 	
@@ -39,16 +43,24 @@ public class Assets implements Disposable, AssetErrorListener {
 	 * Made by Owen Burnahm (Assignment 4)
 	 * Creates the three fonts, small, normal, and big, and
 	 * gives them the appropriate properties
+	 * @return 
 	 */
+
+public class AssetFonts
+{
+	public final BitmapFont defaultSmall;
+	public final BitmapFont defaultNormal;
+	public final BitmapFont defaultBig;
+	
 	public AssetFonts() 
 	{
 		// create three fonts using Libgdx's 15px bitmap font
 		defaultSmall = new BitmapFont(
-				Gdxfiles.internal("images/arial-15.fnt"), true);
+				Gdx.files.internal("images/arial-15.fnt"), true);
 		defaultNormal = new BitmapFont(
-				Gdxfiles.internal("images/arial-15.fnt"), true);
+				Gdx.files.internal("images/arial-15.fnt"), true);
 		defaultBig = new BitmapFont(
-				Gdxfiles.internal("images/arial-15.fnt"), true);
+				Gdx.files.internal("images/arial-15.fnt"), true);
 		
 		// set font sizes
 		defaultSmall.setScale(0.75f);
@@ -63,6 +75,7 @@ public class Assets implements Disposable, AssetErrorListener {
 		defaultBig.getRegion().getTexture().setFilter(
 				TextureFilter.Linear, TextureFilter.Linear);
 	}
+}
 	
 	/**
 	 * Made by Philip Deppen (Assignment 3)
@@ -103,7 +116,8 @@ public class Assets implements Disposable, AssetErrorListener {
 	 * disposes objects after they're done being used
 	 */
 	@Override
-	public void dispose() {
+	public void dispose() 
+	{
 		assetManager.dispose();
 		fonts.defaultSmall.dispose();
 		fonts.defaultNormal.dispose();
@@ -186,5 +200,11 @@ public class Assets implements Disposable, AssetErrorListener {
 		feather = atlas.findRegion("item_feather");
 		}
 		}
+
+	@Override
+	public void error(AssetDescriptor asset, Throwable throwable) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

@@ -1,17 +1,19 @@
-package com.mygdx.game;
+package com.packtpub.libgdx.canyonbunny.game;
+
 
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
-import com.packtpub.libgdx.canyonbunny.Assets;
+import com.mygdx.game.WorldController;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.packtpub.libgdx.canyonbunny.*;
 import com.packtpub.libgdx.canyonbunny.game.objects.*;
 import com.packtpub.libgdx.canyonbunny.util.*;
+import com.packtpub.libgdx.canyonbunny.util.Assets;
 
 /* @author: Tyler Major
  * pg 189-190 code

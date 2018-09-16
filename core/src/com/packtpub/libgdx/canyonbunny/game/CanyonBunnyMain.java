@@ -1,4 +1,4 @@
-package com.packtpub.libgdx.canyonbunny;
+package com.packtpub.libgdx.canyonbunny.game;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.assets.AssetManager;
@@ -7,7 +7,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.mygdx.game.WorldController;
-import com.mygdx.game.WorldRenderer;
+import com.packtpub.libgdx.canyonbunny.util.Assets;
 /**
  * @author Owen Burnham 
  * Note this is is under branch p157_CanyonBunnyMain but also

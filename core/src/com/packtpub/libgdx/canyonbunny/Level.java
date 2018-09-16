@@ -1,11 +1,11 @@
 package com.packtpub.libgdx.canyonbunny;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-import com.packtpub.libgdx.canyonbunny.game.objects.
-AbstractGameObject;
+import com.packtpub.libgdx.canyonbunny.game.objects.AbstractGameObject;
 import com.packtpub.libgdx.canyonbunny.game.objects.Clouds;
 import com.packtpub.libgdx.canyonbunny.game.objects.Mountains;
 import com.packtpub.libgdx.canyonbunny.game.objects.Rock;
@@ -142,7 +142,7 @@ public class Level
 		}
 		
 		//Render matches lastPixel with currentPixel and used to detect rock pixels/colors.
-		public void render (SpriteBatch batch) 
+		public void render(SpriteBatch batch) 
 		{
 			// Draw Mountains
 			mountains.render(batch);
@@ -156,9 +156,8 @@ public class Level
 			
 			// Draw Clouds
 			clouds.render(batch);
-			}
-			
-			
 		}
-		
+			
+			
 }
+		

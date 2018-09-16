@@ -2,8 +2,8 @@ package com.packtpub.libgdx.canyonbunny.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.packtpub.libgdx.canyonbunny.Assets;
 import com.packtpub.libgdx.canyonbunny.game.*;
+import com.packtpub.libgdx.canyonbunny.util.Assets;
 
 /**
  * @author Owen Burnham (Assignment 4)

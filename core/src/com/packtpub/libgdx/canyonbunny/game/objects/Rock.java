@@ -6,6 +6,7 @@ package com.packtpub.libgdx.canyonbunny.game.objects;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.packtpub.libgdx.canyonbunny.*;
+import com.packtpub.libgdx.canyonbunny.util.Assets;
 
 /**
  * Rock consists of left edge, middle part, and a right edge

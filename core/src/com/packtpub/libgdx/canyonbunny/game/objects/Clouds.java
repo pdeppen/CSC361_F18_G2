@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.packtpub.libgdx.canyonbunny.*;
+import com.packtpub.libgdx.canyonbunny.util.Assets;
 
 /**
  * A cloud object will be one of 3 available cloud images
