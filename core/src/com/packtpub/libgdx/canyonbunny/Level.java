@@ -1,4 +1,5 @@
-package com.packtpub.libgdx.canyonbunny.game;
+package com.packtpub.libgdx.canyonbunny;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -9,7 +10,6 @@ import com.packtpub.libgdx.canyonbunny.game.objects.Clouds;
 import com.packtpub.libgdx.canyonbunny.game.objects.Mountains;
 import com.packtpub.libgdx.canyonbunny.game.objects.Rock;
 import com.packtpub.libgdx.canyonbunny.game.objects.WaterOverlay;
-package com.packtpub.libgdx.canyonbunny;
 
 
 /* @author: Tyler Major

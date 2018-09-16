@@ -9,6 +9,9 @@ import com.packtpub.libgdx.canyonbunny.Assets;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.packtpub.libgdx.canyonbunny.*;
+import com.packtpub.libgdx.canyonbunny.game.objects.*;
+import com.packtpub.libgdx.canyonbunny.util.*;
 
 /* @author: Tyler Major
  * pg 189-190 code
