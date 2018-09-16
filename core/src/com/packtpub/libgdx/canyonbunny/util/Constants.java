@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.packtpub.libgdx.canyonbunny.util;
 /*  Tyler Major
  *  pg 113 
  *  9/7/2018

@@ -15,12 +15,18 @@ import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
+import com.packtpub.libgdx.canyonbunny.game.objects.Rock;
+import com.packtpub.libgdx.canyonbunny.util.Constants;
+import com.packtpub.libgdx.canyonbunny.*;
 
 /** will need to create package for this */
 /** testing */
 
 public class WorldController extends InputAdapter
 {
+	public Level level;
+	public int lives;
+	public int score;
 	
 	private static final String TAG = 
 		WorldController.class.getName();
@@ -40,7 +46,8 @@ public class WorldController extends InputAdapter
 	public void init() {
 		Gdx.input.setInputProcessor(this);
 		cameraHelper = new CameraHelper();
-		initTestObjects();
+		lives = Constants.LIVES_START;
+		initLevel();
 	}
 	
 	
@@ -66,7 +73,6 @@ public class WorldController extends InputAdapter
 	 */
 	public void update(float deltaTime) {
 		handleDebugInput(deltaTime);
-		updateTestObjects(deltaTime);
 		cameraHelper.update(deltaTime);
 	}
 	
@@ -110,6 +116,10 @@ public class WorldController extends InputAdapter
 	}
 	
 	
+	/**
+	 * Made by Philip Deppen (Assignment 2)
+	 * Edited by Philip Deppen (Assignment 4)
+	 */
 	@Override
 	public boolean keyUp (int keycode) {
 		// Reset game world
@@ -117,23 +127,16 @@ public class WorldController extends InputAdapter
 			init();
 			Gdx.app.debug(TAG, "Game world resetted");
 		}
-		// Select next sprite
-		else if (keycode == Keys.SPACE) {
-			selectedSprite = (selectedSprite + 1) % testSprites.length;
-			// Update camera's target to follow the currently 
-			// selected sprite
-			if (cameraHelper.hasTarget()) {
-				cameraHelper.setTarget(testSprites[selectedSprite]);
-			}
-			Gdx.app.debug(TAG, "Sprite #" + selectedSprite + " selected");
-		}
-		// Toggle camera follow 
-		else if (keycode == Keys.ENTER) {
-			cameraHelper.setTarget(cameraHelper.hasTarget() ? null : 
-				testSprites[selectedSprite]);
-			Gdx.app.debug(TAG, "Camera follow enabled: " + 
-				cameraHelper.hasTarget());
-		}
+		
 		return false;
 	}
+	
+	/**
+	 * Made by Philip Deppen (Assignment 4)
+	 */
+	private void initLevel() {
+		score = 0;
+		level = new Level (Constants.LEVEL_01);
+	}
+	
 }
