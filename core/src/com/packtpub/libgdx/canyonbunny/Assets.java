@@ -64,6 +64,10 @@ public class Assets implements Disposable, AssetErrorListener {
 				TextureFilter.Linear, TextureFilter.Linear);
 	}
 	
+	/**
+	 * Made by Philip Deppen (Assignment 3)
+	 * initializes objects when constructor is called
+	 */
 	public void init (AssetManager assetManager) {
 		this.assetManager = assetManager;
 		// set asset manager error handler
@@ -107,16 +111,15 @@ public class Assets implements Disposable, AssetErrorListener {
 	}
 	
 	/**
-	 * Handles an error
-	 * @param filename
-	 * @param type
-	 * @param throwable
+	 * Made by Philip Deppen (Assignment 3)
+	 * handles an error
 	 */
 	public void error (String filename, Class type, Throwable throwable) {
 		Gdx.app.error(TAG, "Couldn't load asset: '" + filename + "'", (Exception)throwable);
 	}
 	
 	/**
+	 * Made by Philip Deppen (Assignment 3)
 	 * handles an error
 	 */
 	@Override
@@ -124,6 +127,10 @@ public class Assets implements Disposable, AssetErrorListener {
 		Gdx.app.error(TAG, "Couldn't load asset '" + asset.fileName + "'", (Exception)throwable);
 	}
 	
+	/**
+	 * Made by Philip Deppen (Assignment 3)
+	 * decorates the atlas
+	 */
 	public class AssetLevelDecoration 
 	{
 		public final AtlasRegion cloud01;
