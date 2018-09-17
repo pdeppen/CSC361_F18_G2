@@ -46,36 +46,36 @@ public class Assets implements Disposable, AssetErrorListener {
 	 * @return 
 	 */
 
-public class AssetFonts
-{
-	public final BitmapFont defaultSmall;
-	public final BitmapFont defaultNormal;
-	public final BitmapFont defaultBig;
-	
-	public AssetFonts() 
+	public class AssetFonts
 	{
-		// create three fonts using Libgdx's 15px bitmap font
-		defaultSmall = new BitmapFont(
-				Gdx.files.internal("images/arial-15.fnt"), true);
-		defaultNormal = new BitmapFont(
-				Gdx.files.internal("images/arial-15.fnt"), true);
-		defaultBig = new BitmapFont(
-				Gdx.files.internal("images/arial-15.fnt"), true);
+		public final BitmapFont defaultSmall;
+		public final BitmapFont defaultNormal;
+		public final BitmapFont defaultBig;
 		
-		// set font sizes
-		defaultSmall.setScale(0.75f);
-		defaultNormal.setScale(1.0f);
-		defaultBig.setScale(2.0f);
-		
-		// enable linear texture filtering for smooth fonts
-		defaultSmall.getRegion().getTexture().setFilter(
-				TextureFilter.Linear, TextureFilter.Linear);
-		defaultNormal.getRegion().getTexture().setFilter(
-				TextureFilter.Linear, TextureFilter.Linear);
-		defaultBig.getRegion().getTexture().setFilter(
-				TextureFilter.Linear, TextureFilter.Linear);
+		public AssetFonts() 
+		{
+			// create three fonts using Libgdx's 15px bitmap font
+			defaultSmall = new BitmapFont(
+					Gdx.files.internal("../core/assets/font/arial-15.fnt"), true);
+			defaultNormal = new BitmapFont(
+					Gdx.files.internal("../core/assets/font/arial-15.fnt"), true);
+			defaultBig = new BitmapFont(
+					Gdx.files.internal("../core/assets/font/arial-15.fnt"), true);
+			
+			// set font sizes
+			defaultSmall.getData().setScale(0.75f);
+			defaultNormal.getData().setScale(1.0f);
+			defaultBig.getData().setScale(2.0f);
+			
+			// enable linear texture filtering for smooth fonts
+			defaultSmall.getRegion().getTexture().setFilter(
+					TextureFilter.Linear, TextureFilter.Linear);
+			defaultNormal.getRegion().getTexture().setFilter(
+					TextureFilter.Linear, TextureFilter.Linear);
+			defaultBig.getRegion().getTexture().setFilter(
+					TextureFilter.Linear, TextureFilter.Linear);
+		}
 	}
-}
 	
 	/**
 	 * Made by Philip Deppen (Assignment 3)
@@ -199,12 +199,8 @@ public class AssetFonts
 		public AssetFeather (TextureAtlas atlas) {
 		feather = atlas.findRegion("item_feather");
 		}
-		}
-
-	@Override
-	public void error(AssetDescriptor asset, Throwable throwable) {
-		// TODO Auto-generated method stub
-		
 	}
+
+
 	
 }
