@@ -42,9 +42,15 @@ public class Rock extends AbstractGameObject {
 	/**
 	 * Made by Philip Deppen (Assignment 4)
 	 * sets length
+	 * 
+	 * Updated by Tyler Major on 9/20/2018
+	 * Added pg210
 	 */
-	public void setLength(int length) {
+	public void setLength(int length) 
+	{
 		this.length = length;
+		//Tyler Major: update bounding box for collision detection
+		bounds.set(0,0,dimension.x * length, dimension.y);
 	}
 	
 	/**
