@@ -19,6 +19,8 @@ import com.packtpub.libgdx.canyonbunny.util.Assets;
  * pg 189-190 code
  * The added code creates a second camera that is specifically set up just to render
  * the game's GUI.
+ * 
+ * Tyler: Updated 9/20/22 Added code from pg222
  */
 
 public class WorldRenderer implements Disposable 
@@ -150,6 +152,19 @@ public class WorldRenderer implements Disposable
 		renderGuiFpsCounter(batch);
 		batch.end();
 	}
+	
+	//Tyler added this from page220. This function adds the text that says Game Over when lives run out
+	private void renderGuiGameOverMessage (SpriteBatch batch) {
+		float x = cameraGUI.viewportWidth / 2;
+		float y = cameraGUI.viewportHeight / 2;
+		if (worldController.isGameOver()) {
+		BitmapFont fontGameOver = Assets.instance.fonts.defaultBig;
+		fontGameOver.setColor(1, 0.75f, 0.25f, 1);
+		fontGameOver.drawMultiLine(batch, "GAME OVER", x, y, 0,
+		BitmapFont.HAlignment.CENTER);
+		fontGameOver.setColor(1, 1, 1, 1);
+		}
+		}
 	
 	
 }
