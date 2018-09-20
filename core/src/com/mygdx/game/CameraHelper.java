@@ -41,6 +41,10 @@ public class CameraHelper
 	if (!hasTarget()) return;
 	position.x = target.position.x + target.origin.x;
 	position.y = target.position.y + target.origin.y;
+	
+	//Tyler added this code from pg222
+	// Prevent camera from moving down too far
+	position.y = Math.max(-1f, position.y);
 	}
 	
 	
