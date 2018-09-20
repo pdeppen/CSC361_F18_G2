@@ -157,4 +157,42 @@ public class BunnyHead extends AbstractGameObject
 			}
 		}
 	}
+	
+	@Override
+	/**
+	 * Handles the calculations and switching of states that
+	 * is needed to enable jumping and falling
+	 */
+	protected void updateMotionY (float deltaTime)
+	{
+		switch (jumpState) 
+		{
+		case GROUNDED:
+			jumpState = JUMP_STATE.FALLING;
+			break;
+		case JUMP_RISING:
+			// Keep track of jump time
+			timeJumping += deltaTime;
+			// Jump time left?
+			if (timeJumping <= JUMP_TIME_MAX)
+			{
+				// Still jumping
+				velocity.y = terminalVelocity.y;
+			}
+			break;
+		case FALLING:
+			break;
+		case JUMP_FALLING:
+			// Add delta times to track jump time
+			timeJumping += deltaTime;
+			// Jump to minimal height if jump key was pressed to short
+			if (timeJumping > 0 && timeJumping <= JUMP_TIME_MIN)
+			{
+				// Still Jumping
+				velocity.y = terminalVelocity.y;
+			}
+		}
+		if (jumpState != JUMP_STATE.GROUNDED)
+			super.updateMotionY(deltaTime);
+	}
 }
