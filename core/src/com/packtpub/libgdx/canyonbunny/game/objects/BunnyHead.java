@@ -108,6 +108,53 @@ public class BunnyHead extends AbstractGameObject
 		}
 	}
 	
-	public void setFeatherPowerup (boolean pickedUp) {};
-	public boolean hasFeatherPowerup () {};
+	/**
+	 * Allows us to toggle the feather power-up effect
+	 * @param pickedUp
+	 */
+	public void setFeatherPowerup (boolean pickedUp) 
+	{
+		hasFeatherPowerup = pickedUp;
+		if (pickedUp)
+		{
+			timeLeftFeatherPowerup = 
+					Constants.ITEM_FEATHER_POWERUP_DURATION;
+		}
+	}
+	
+	/**
+	 * Finds out whether the power-up is still active 
+	 * @return if power-up is still still active
+	 */
+	public boolean hasFeatherPowerup () 
+	{
+		return hasFeatherPowerup && timeLeftFeatherPowerup > 0;
+	}
+	
+	@Override
+	/**
+	 * Handles the switching of the viewing direction accoriding
+	 * to the current move direction.  The time remaining of the 
+	 * power-up effect is also checked.  If the time is up, the
+	 * feather power-up effect is disabled.
+	 */
+	public void update (float deltaTime)
+	{
+		super.update(deltaTime);
+		if (velocity.x != 0)
+		{
+			viewDirection = velocity.x < 0 ? VIEW_DIRECTION.LEFT :
+				VIEW_DIRECTION.RIGHT;
+		}
+		if (timeLeftFeatherPowerup > 0)
+		{
+			timeLeftFeatherPowerup -= deltaTime;
+			if (timeLeftFeatherPowerup < 0)
+			{
+				// disable power-up
+				timeLeftFeatherPowerup = 0;
+				setFeatherPowerup(false);
+			}
+		}
+	}
 }
