@@ -3,6 +3,8 @@ package com.packtpub.libgdx.canyonbunny.game.objects;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.MathUtils;
+
 /**
  * @author Owen Burnham (Assignment 4)
  * edited by Owen Burnham (Assignment 5)
@@ -58,4 +60,58 @@ public abstract class AbstractGameObject
 	 * objects are rendered accordingly
 	 */
 	public abstract void render(SpriteBatch batch);
+	
+	/**
+	 * author Owen Burnham (Assignment 5)
+	 * @param deltaTime 
+	 * Updates all physics related variables to the x variable
+	 * including velocity, terminal velocity, friction and acceleration
+	 */
+	protected void updateMotionX (float deltaTime) 
+	{
+		if (velocity.x != 0)
+		{
+			// Apply friction
+			if (velocity.x > 0)
+			{
+				velocity.x = Math.max(velocity.x - friction.x * deltaTime, 0);
+			}
+			else 
+			{
+				velocity.x = Math.max(velocity.x + friction.x * deltaTime, 0);
+			}
+		}
+			// Apply acceleration
+			velocity.x += acceleration.x * deltaTime;
+			// Make sure the object's velocity does not exceed the
+			// positive or negative terminal velocity
+			velocity.x = MathUtils.clamp(velocity.x, -terminalVelocity.x, terminalVelocity.x);
+	}
+	
+	/**
+	 * author Owen Burnham (Assignment 5)
+	 * @param deltaTime
+	 * Updates all physics related variables to the y variable
+	 * including velocity, terminal velocity, friction and acceleration
+	 */
+	protected void updateMotionY (float deltaTime)
+	{
+		if (velocity.y != 0)
+		{
+			// Apply friction
+			if (velocity.y > 0)
+			{
+				velocity.y = Math.max(velocity.y - friction.y * deltaTime, 0);
+			}
+			else 
+			{
+				velocity.y = Math.max(velocity.y + friction.y * deltaTime, 0);
+			}
+		}
+			// Apply acceleration
+			velocity.y += acceleration.y * deltaTime;
+			// Make sure the object's velocity does not exceed the
+			// positive or negative terminal velocity
+			velocity.y = MathUtils.clamp(velocity.y, -terminalVelocity.y, terminalVelocity.y);
+	}
 }
