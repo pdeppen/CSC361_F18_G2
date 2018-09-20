@@ -46,13 +46,19 @@ public abstract class AbstractGameObject
 	}
 	
 	/**
+	 * updated by Owen Burnham (Assignment 5)
 	 * @param deltaTime
 	 * updates objects accordingly in relevance 
-	 * to the delat time
+	 * to the delta time
+	 * updates motion for both x and y
 	 */
 	public void update(float deltaTime) 
 	{
-		
+		updateMotionX(deltaTime);
+		updateMotionY(deltaTime);
+		// Move to new position
+		position.x += velocity.x * deltaTime;
+		position.y += velocity.y * deltaTime;
 	}
 	
 	/**
