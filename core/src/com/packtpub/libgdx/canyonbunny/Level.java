@@ -16,6 +16,7 @@ import com.packtpub.libgdx.canyonbunny.game.objects.WaterOverlay;
 //Tyler Major added these from pg210 level
 //import com.packtpub.libgdx.canyonbunny.game.objects.BunnyHead;
 import com.packtpub.libgdx.canyonbunny.game.objects.Feather;
+import com.packtpub.libgdx.canyonbunny.game.objects.GoldCoin;
 
 
 /* @author: Tyler Major

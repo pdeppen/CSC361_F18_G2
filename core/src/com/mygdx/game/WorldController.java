@@ -38,6 +38,14 @@ public class WorldController extends InputAdapter
 	
 	public CameraHelper cameraHelper;
 	
+	// Rectangles for collision detection
+	private Rectangle r1 = new Rectangle();
+	private Rectangle r2 = new Rectangle();
+	
+	private void onCollisionBunnyHeadWithRock(Rock rock) {} ;
+	private void onCollisionBunnyWithGoldCoin(GoldCoin goldcoin) {};
+	private void onCollisionBunnyWithFeather(Feather feather) {};
+	
 	/**
 	 * constructor 
 	 */
@@ -144,5 +152,45 @@ public class WorldController extends InputAdapter
 		score = 0;
 		level = new Level (Constants.LEVEL_01);
 	}
+	
+	/**
+	 * Made by Philip Deppen (Assignment 5)
+	 */
+	private void testCollisions() {
+		r1.set(level.bunnyHead.position.x, level.bunnyHead.position.y,
+			   level.bunnyHead.bounds.width, level.bunnyHead.bounds.height);
+		
+		// Test collision: Bunny Head <-> Rocks
+	     for (Rock rock : level.rocks) {
+	       r2.set(rock.position.x, rock.position.y, rock.bounds.width,
+	    		      rock.bounds.height);
+	       if (!r1.overlaps(r2)) continue;
+       			onCollisionBunnyHeadWithRock(rock);
+	       // IMPORTANT: must do all collisions for valid
+	       // edge testing on rocks.
+	     }
+	     
+	     // Test collision: Bunny Head <-> Gold Coins
+	     for (GoldCoin goldcoin : level.goldcoins) {
+	       if (goldcoin.collected) continue;
+	       		r2.set(goldcoin.position.x, goldcoin.position.y,
+	       			   goldcoin.bounds.width, goldcoin.bounds.height);
+	       
+	       if (!r1.overlaps(r2)) continue;
+	       onCollisionBunnyWithGoldCoin(goldcoin);
+	       break;
+	     }
+	     // Test collision: Bunny Head <-> Feathers
+	     for (Feather feather : level.feathers) {
+	       if (feather.collected) continue;
+	       r2.set(feather.position.x, feather.position.y,
+	    		   feather.bounds.width, feather.bounds.height);
+	       
+	       if (!r1.overlaps(r2)) continue;
+	       onCollisionBunnyWithFeather(feather);
+	       break;
+	     }
+	}
+	
 	
 }
