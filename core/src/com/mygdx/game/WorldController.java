@@ -17,6 +17,12 @@ import com.badlogic.gdx.math.MathUtils;
 import com.packtpub.libgdx.canyonbunny.game.objects.Rock;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
 import com.packtpub.libgdx.canyonbunny.*;
+import com.badlogic.gdx.math.Rectangle;
+import com.packtpub.libgdx.canyonbunny.game.objects.BunnyHead;
+import com.packtpub.libgdx.canyonbunny.game.objects.BunnyHead.JUMP_STATE;
+import com.packtpub.libgdx.canyonbunny.game.objects.Feather;
+import com.packtpub.libgdx.canyonbunny.game.objects.GoldCoin;
+import com.packtpub.libgdx.canyonbunny.game.objects.Rock;
 
 /** will need to create package for this */
 /** testing */
