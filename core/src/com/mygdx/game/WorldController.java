@@ -137,6 +137,7 @@ public class WorldController extends InputAdapter
 	 */
 	public void update(float deltaTime) {
 		handleDebugInput(deltaTime);
+		handleInputGame(deltaTime);
 		level.update(deltaTime);
 		testCollisions();
 		cameraHelper.update(deltaTime);
@@ -190,7 +191,7 @@ public class WorldController extends InputAdapter
 	
 	/**
 	 * Made by Philip Deppen (Assignment 2)
-	 * Edited by Philip Deppen (Assignment 4)
+	 * Edited by Philip Deppen (Assignment 4, 5)
 	 */
 	@Override
 	public boolean keyUp (int keycode) {
@@ -198,6 +199,11 @@ public class WorldController extends InputAdapter
 		if (keycode == Keys.R) {
 			init();
 			Gdx.app.debug(TAG, "Game world resetted");
+		}
+		// Toggle camera follow
+		else if (keycode == Keys.ENTER) {
+			cameraHelper.setTarget(cameraHelper.hasTarget() ? null: level.bunnyHead);
+		    Gdx.app.debug(TAG, "Camera follow enabled: " + cameraHelper.hasTarget());
 		}
 		
 		return false;
@@ -254,6 +260,32 @@ public class WorldController extends InputAdapter
 	     }
 	}
 	
+	/**
+	 * Made by Philip Deppen (Assignment 5)
+	 * allows player to be controllable with left and right arrow keys
+	 */
+	private void handleInputGame (float deltaTime) {
+	   if (cameraHelper.hasTarget(level.bunnyHead)) {
+		   // Player Movement
+		   if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+			   level.bunnyHead.velocity.x = -level.bunnyHead.terminalVelocity.x;
+		   } 
+		   else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+			   level.bunnyHead.velocity.x = level.bunnyHead.terminalVelocity.x;
+		   } 
+		   else {
+			   // Execute auto-forward movement on non-desktop platform
+			   if (Gdx.app.getType() != ApplicationType.Desktop) {
+				   level.bunnyHead.velocity.x = level.bunnyHead.terminalVelocity.x;
+			   }
+		   }
+		   // Bunny Jump
+		   if (Gdx.input.isTouched() || Gdx.input.isKeyPressed(Keys.SPACE)) {
+	         level.bunnyHead.setJumping(true);
+	       } else {
+	         level.bunnyHead.setJumping(false);
+	       }
+	   }
+   	}
 
-	
 }
