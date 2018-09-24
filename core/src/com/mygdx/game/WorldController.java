@@ -42,6 +42,10 @@ public class WorldController extends InputAdapter
 	private Rectangle r1 = new Rectangle();
 	private Rectangle r2 = new Rectangle();
 	
+	private float timeLeftGameOverDelay;
+	
+	
+	
 	/**
 	 * Made by Philip Deppen (Assignment 5)
 	 * handles collisions between the bunny and rock objects
@@ -111,6 +115,7 @@ public class WorldController extends InputAdapter
 		Gdx.input.setInputProcessor(this);
 		cameraHelper = new CameraHelper();
 		lives = Constants.LIVES_START;
+		timeLeftGameOverDelay = 0;
 		initLevel();
 	}
 	
@@ -137,10 +142,20 @@ public class WorldController extends InputAdapter
 	 */
 	public void update(float deltaTime) {
 		handleDebugInput(deltaTime);
-		handleInputGame(deltaTime);
+		if (isGameOver()) {
+			timeLeftGameOverDelay -= deltaTime;
+			if (timeLeftGameOverDelay < 0) 
+				init();
+		} 
+		else {
+			handleInputGame(deltaTime);
+		}
 		level.update(deltaTime);
 		testCollisions();
 		cameraHelper.update(deltaTime);
+		if (!isGameOver() && isPlayerInWater()) {
+			
+		}
 	}
 	
 	/**
@@ -287,5 +302,19 @@ public class WorldController extends InputAdapter
 	       }
 	   }
    	}
+	
+	/**
+	 * Made by Philip Deppen (Assignment 5)
+	 */
+	public boolean isGameOver() {
+		return lives < 0;
+	}
+	
+	/**
+	 * Made by Philip Deppen (Assignment 5)
+	 */
+	public boolean isPlayerInWater() {
+		return level.bunnyHead.position.y < -5;
+	}
 
 }
