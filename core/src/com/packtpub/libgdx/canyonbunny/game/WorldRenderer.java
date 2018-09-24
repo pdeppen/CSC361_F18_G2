@@ -166,11 +166,10 @@ public class WorldRenderer implements Disposable
 		if (worldController.isGameOver()) {
 		BitmapFont fontGameOver = Assets.instance.fonts.defaultBig;
 		fontGameOver.setColor(1, 0.75f, 0.25f, 1);
-		fontGameOver.drawMultiLine(batch, "GAME OVER", x, y, 0,
-		BitmapFont.HAlignment.CENTER);
+		fontGameOver.draw(batch, "GAME OVER", x, y, 0, 1, false);		// need to fix alignment center
 		fontGameOver.setColor(1, 1, 1, 1);
 		}
-		}
+	}
 	
 	//Tyler added this code from page 224 in book.
 	//This method first checks whether there is still time left for the feather power-up effect

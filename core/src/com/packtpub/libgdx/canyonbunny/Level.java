@@ -75,7 +75,7 @@ public class Level
 			// objects
 			rocks = new Array<Rock>();
 			goldcoins = new Array<GoldCoin>();
-			feathers = new Array<feather>();
+			feathers = new Array<Feather>();
 			
 			// load image file that represents the level data
 			Pixmap pixmap = new Pixmap(Gdx.files.internal(filename));
@@ -139,7 +139,6 @@ public class Level
 			// gold coin
 			else if (BLOCK_TYPE.ITEM_GOLD_COIN.sameColor(currentPixel)) 
 			{
-				(BLOCK_TYPE.ITEM_GOLD_COIN.sameColor(currentPixel)) {
 					obj = new GoldCoin();
 					offsetHeight = -1.5f;
 					obj.position.set(pixelX,baseHeight * obj.dimension.y
