@@ -44,8 +44,8 @@ public class WorldController extends InputAdapter
 	
 	/**
 	 * Made by Philip Deppen (Assignment 5)
-	 * iterates through all the game objects and tests whether
-	 * there is a collision between the bunny head and another game object
+	 * handles collisions between the bunny and rock objects
+	 * called when a collision is detected
 	 */
 	private void onCollisionBunnyHeadWithRock(Rock rock) {
 		BunnyHead bunnyHead = level.bunnyHead;
@@ -76,8 +76,26 @@ public class WorldController extends InputAdapter
 		}
 	} 
 	
-	private void onCollisionBunnyWithGoldCoin(GoldCoin goldcoin) {};
-	private void onCollisionBunnyWithFeather(Feather feather) {};
+	/**
+	 * Made by Philip Deppen (Assignment 5)
+	 * flags the gold coin as being collected so that it will disappear
+	 */
+	private void onCollisionBunnyWithGoldCoin(GoldCoin goldcoin) {
+		goldcoin.collected = true;
+		score += goldcoin.getScore();
+		Gdx.app.log(TAG, "Gold coin collected");
+	}
+	
+	/**
+	 * Made by Philip Deppen (Assignment 5)
+	 * flags the feather as being collected and also activates/refreshes the power-up effect
+	 */
+	private void onCollisionBunnyWithFeather(Feather feather) {
+		feather.collected = true;
+		score += feather.getScore();
+		level.bunnyHead.setFeatherPowerup(true);
+		Gdx.app.log(TAG, "Feather collected");
+	}
 	
 	/**
 	 * constructor 
@@ -120,6 +138,7 @@ public class WorldController extends InputAdapter
 	public void update(float deltaTime) {
 		handleDebugInput(deltaTime);
 		level.update(deltaTime);
+		testCollisions();
 		cameraHelper.update(deltaTime);
 	}
 	
@@ -188,6 +207,8 @@ public class WorldController extends InputAdapter
 	
 	/**
 	 * Made by Philip Deppen (Assignment 5)
+	 * iterates through all the game objects and tests whether
+	 * there is a collision between the bunny head and another game object
 	 */
 	private void testCollisions() {
 		r1.set(level.bunnyHead.position.x, level.bunnyHead.position.y,
