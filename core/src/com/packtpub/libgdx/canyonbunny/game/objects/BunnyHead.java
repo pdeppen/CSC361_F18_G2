@@ -84,7 +84,7 @@ public class BunnyHead extends AbstractGameObject
 	 */
 	public void setJumping (boolean jumpKeyPressed) 
 	{
-		switch (jumpState)
+		switch (jumpState)	
 		{
 		case GROUNDED: // Character is standind on a platform
 			if (jumpKeyPressed)

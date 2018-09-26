@@ -84,7 +84,7 @@ public abstract class AbstractGameObject
 			}
 			else 
 			{
-				velocity.x = Math.max(velocity.x + friction.x * deltaTime, 0);
+				velocity.x = Math.min(velocity.x + friction.x * deltaTime, 0);
 			}
 		}
 			// Apply acceleration
@@ -111,7 +111,7 @@ public abstract class AbstractGameObject
 			}
 			else 
 			{
-				velocity.y = Math.max(velocity.y + friction.y * deltaTime, 0);
+				velocity.y = Math.min(velocity.y + friction.y * deltaTime, 0);
 			}
 		}
 			// Apply acceleration
