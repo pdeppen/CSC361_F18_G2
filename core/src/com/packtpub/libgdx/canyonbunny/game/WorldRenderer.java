@@ -5,6 +5,7 @@ package com.packtpub.libgdx.canyonbunny.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Disposable;
 import com.mygdx.game.WorldController;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
@@ -166,7 +167,7 @@ public class WorldRenderer implements Disposable
 		if (worldController.isGameOver()) {
 		BitmapFont fontGameOver = Assets.instance.fonts.defaultBig;
 		fontGameOver.setColor(1, 0.75f, 0.25f, 1);
-		fontGameOver.draw(batch, "GAME OVER", x, y, 0, 1, false);		// need to fix alignment center
+		fontGameOver.draw(batch, "GAME OVER", x, y, 0, Align.center, false);		// need to fix alignment center
 		fontGameOver.setColor(1, 1, 1, 1);
 		}
 	}
