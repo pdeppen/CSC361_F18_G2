@@ -75,13 +75,22 @@ public class MenuScreen extends AbstractGameScreen {
 	public void render (float deltaTime) {
 		Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		if (Gdx.input.isTouched()) {
-			game.setScreen(new GameScreen(game));
+		
+		if (debugEnabled) {
+			debugRebuildStage -= deltaTime;
+			if (debugRebuildStage <=  0) {
+				debugRebuildStage = DEBUG_REBUILD_INTERVAL;
+				rebuildStage();
+			}
 		}
+		stage.act(deltaTime);
+		stage.draw();
+		Table.drawDebug(stage);
 	}
 	
 	/**
 	 * Made by Philip Deppen (Assignment 6)
+	 * sets the viewport size of the stage
 	 * @param width
 	 * @param height
 	 */
@@ -89,12 +98,27 @@ public class MenuScreen extends AbstractGameScreen {
 	public void resize (int width, int height) {
 		stage.getViewport().update(width, height, true);
 	}
-     
+    
+	/**
+	 * Made by Philip Deppen (Assignment 6)
+	 * called when the screen is shown. initializes the stage
+	 */
 	@Override 
-    public void show () { }
-     
+    public void show () {
+		stage = new Stage(new StretchViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT));
+		Gdx.input.setInputProcessor(stage);
+		rebuildStage();
+	}
+    
+	/**
+	 * Made by Philip Deppen (Assignment 6)
+	 * frees the allocated resources when the screen is hidden
+	 */
     @Override 
-    public void hide () { }
+    public void hide () {
+    		stage.dispose();
+    		skinCanyonBunny.dispose();
+    }
      
     @Override 
     public void pause () { }
