@@ -80,8 +80,15 @@ public class MenuScreen extends AbstractGameScreen {
 		}
 	}
 	
+	/**
+	 * Made by Philip Deppen (Assignment 6)
+	 * @param width
+	 * @param height
+	 */
 	@Override 
-	public void resize (int width, int height) { }
+	public void resize (int width, int height) {
+		stage.getViewport().update(width, height, true);
+	}
      
 	@Override 
     public void show () { }
@@ -94,6 +101,7 @@ public class MenuScreen extends AbstractGameScreen {
     
     /**
      * Made by Philip Deppen (Assignment 6)
+     * makes up final screen of the menu screen
      */
     private void rebuildStage() {
     		skinCanyonBunny = new Skin (Gdx.files.internal(Constants.SKIN_CANYONBUNNY_UI), new TextureAtlas(Constants.TEXTURE_ATLAS_UI);
@@ -113,5 +121,52 @@ public class MenuScreen extends AbstractGameScreen {
     		stack.add(layerBackground);
     		stack.add(layerObjects);
     		stack.add(layerLogos);
+    		stack.add(layerControls);
+    		stack.addActor(layerOptionsWindow);
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     * @return Table
+     */
+    private Table buildBackgroundLayer() {
+    		Table layer = new Table();
+    		return layer;
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     * @return Table
+     */
+    private Table buildObjectsLayer() {
+    		Table layer = new Table();
+    		return layer;
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     * @return Table
+     */
+    private Table buildLogosLayer () {
+        Table layer = new Table();
+        return layer;
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     * @return Table
+     */
+    private Table buildControlsLayer () {
+    		Table layer = new Table();
+        return layer;
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     * @return Table
+     */
+    private Table buildOptionsWindowLayer () {
+        Table layer = new Table();
+        return layer;
     }
 }
