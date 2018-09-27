@@ -41,6 +41,21 @@ public class MenuScreen extends AbstractGameScreen {
 	private Button btnMenuPlay;
 	private Button btnMenuOptions;
 	// options
+	private Window winOptions;
+	private TextButton btnWinOptSave;
+	private TextButton btnWinOptCancel;
+	private CheckBox chkSound;
+	private Slider sldSound;
+	private CheckBox chkMusic;
+	private Slider sldMusic;
+	private SelectBox<CharacterSkin> selCharSkin;
+	private Image imgCharSkin;
+	private CheckBox chkShowFpsCounter;
+	
+	// debug
+	private final float DEBUG_REBUILD_INTERVAL = 5.0f;
+	private boolean debugEnabled = false;
+	private float debugRebuildStage;
 	
 	/**
 	 * Made by Philip Deppen (Assignment 6)
@@ -76,4 +91,27 @@ public class MenuScreen extends AbstractGameScreen {
      
     @Override 
     public void pause () { }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     */
+    private void rebuildStage() {
+    		skinCanyonBunny = new Skin (Gdx.files.internal(Constants.SKIN_CANYONBUNNY_UI), new TextureAtlas(Constants.TEXTURE_ATLAS_UI);
+    		
+    		//build all layers
+    		Table layerBackground = buildBackgroundLayer();
+    		Table layerObjects = buildOBjectsLayer();
+    		Table layerLogos = buildLogosLayer();
+    		Table layerControls = buildControlsLayer();
+    		Table layerOptionsWindow = buildOptionsWindowLayer();
+    		
+    		// assemble stage for menu screen
+    		stage.clear();
+    		Stack stack = new Stack();
+    		stage.addActor(stack);
+    		stack.setSize(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT);
+    		stack.add(layerBackground);
+    		stack.add(layerObjects);
+    		stack.add(layerLogos);
+    }
 }
