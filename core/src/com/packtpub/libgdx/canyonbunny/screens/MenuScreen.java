@@ -134,6 +134,8 @@ public class MenuScreen extends AbstractGameScreen {
     private void rebuildStage() {
     		skinCanyonBunny = new Skin (Gdx.files.internal(Constants.SKIN_CANYONBUNNY_UI), new TextureAtlas(Constants.TEXTURE_ATLAS_UI);
     		
+    		skinLibdgdx = new Skin(Gdx.files.internal(Constants.SKIN_LIBDGDX_UI) , new TextureAtlas(Constants.TEXTURE_ATLAS_OBJECTS_LIBGDX_UI));
+    		
     		//build all layers
     		Table layerBackground = buildBackgroundLayer();
     		Table layerObjects = buildOBjectsLayer();
@@ -278,5 +280,38 @@ public class MenuScreen extends AbstractGameScreen {
      */
     private void saveSettings() {
     		GamePreferences prefs = GamePreferences.instance;
+    		
+    		prefs.sound = chkSound.isChecked();
+    		prefs.volSound = sldSound.getValue();
+    		prefs.music = chkMusic.isChecked();
+    		prefs.volMusic = sldMusic.getValue();
+    		prefs.charSkin = selCharSkin.getSelectedIndex();
+    		prefs.showFpsCounter = chkShowFpsCounter.isChecked();
+    		prefs.save();
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     */
+    private void onCharSkinSelected(int index) {
+    		CharacterSkin skin = CharacterSkin.values() (index);
+    		imgCharSkin.setColor(skin.getColor());
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     */
+    private void onSaveClicked() {
+    		saveSettings();
+    		onCancelClicked();
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     */
+    private void onCancelClicked() {
+    		btnMenuPlay.setVisible(true);
+    		btnMenuOptions.setVisible(true);
+    		winOptions.setVisible(false);
     }
 }
