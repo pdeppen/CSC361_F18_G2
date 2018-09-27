@@ -4,9 +4,11 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.assets.AssetManager;
 
 import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.packtpub.libgdx.canyonbunny.screens.MenuScreen;
 import com.badlogic.gdx.graphics.GL20;
-import com.mygdx.game.WorldController;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
 /**
  * @author Owen Burnham 
@@ -15,9 +17,10 @@ import com.packtpub.libgdx.canyonbunny.util.Assets;
  * Edited by Owen Burnham in Assigment 3
  * This class has the major credentials for the game
  * in order for it to run and update as needed
+ * 
+ * Redone by Owen Burnham in Assignment 6
  */
-public class CanyonBunnyMain implements ApplicationListener
-{
+public class CanyonBunnyMain extends Game{
 	private static final String TAG = 
 	CanyonBunnyMain.class.getName();
 	
