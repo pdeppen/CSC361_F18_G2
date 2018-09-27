@@ -57,8 +57,14 @@ public class GameScreen
 	}
 	
 	@Override
+	/**
+	 * Edited by Owen Burnham (Assignment 6)
+	 * Ensures that the game screen will always work with the
+	 * latest game settings
+	 */
 	public void show() 
 	{
+		GamePreferences.instance.load();
 		worldController = new WorldController(game);
 		worldRenderer = new WorldRenderer(worldController);
 		Gdx.input.setCatchBackKey(true);

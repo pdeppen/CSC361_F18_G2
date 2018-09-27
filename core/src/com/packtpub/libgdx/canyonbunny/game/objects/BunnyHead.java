@@ -6,8 +6,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.packtpub.libgdx.canyonbunny.game.objects.*;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
+
+import com.packtpub.libgdx.canyonbunny.util.CharacterSkin;
+import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
+
 /**
  * @author Owen Burnham (Assignment 5)
+ * edited by Owen Burnham (Assignment 6)
  * This class is for the bunny head object.
  * It is the player's character and consists of only
  * one image, but has to account for jumping, falling,
@@ -199,6 +204,7 @@ public class BunnyHead extends AbstractGameObject
 	
 	@Override
 	/**
+	 * Edited by Owen Burnham (Assignment 6)
 	 * Handles the drawing of the image for the bunny head
 	 * game object.  Image will be tinted orange if the feather 
 	 * power-up effect is active.
@@ -206,6 +212,11 @@ public class BunnyHead extends AbstractGameObject
 	public void render (SpriteBatch batch) 
 	{
 		TextureRegion reg = null;
+		
+		// Apply Skin Color
+		batch.setColor(
+				CharacterSkin.values()[GamePreferences.instance.charSkin]
+			.getColor());			
 		
 		// Set special color when game object has a feather power-up
 		if (hasFeatherPowerup)
