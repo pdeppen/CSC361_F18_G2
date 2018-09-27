@@ -27,17 +27,19 @@ public class DesktopLauncher
 	 */
 	public static void main (String[] arg) 
 	{
-		if (rebuildAtlas)
-		{
+		//Tyler added from page 237 for new loading game screen
+		if (rebuildAtlas) {
 			Settings settings = new Settings();
 			settings.maxWidth = 1024;
 			settings.maxHeight = 1024;
-			settings.duplicatePadding = false;
 			settings.debug = drawDebugOutline;
-			
-			/* settings, input, output, packfilename */
-			TexturePacker.process(settings, "assets-raw/images", "../core/assets/images", "canyonbunny.pack");
-		}
+			TexturePacker.process(settings, "assets-raw/images",
+			"../CanyonBunny-android/assets/images",
+			"canyonbunny.pack");
+			TexturePacker.process(settings, "assets-raw/images-ui",
+			"../CanyonBunny-android/assets/images",
+			"canyonbunny-ui.pack");
+			}
 		
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "CanyonBunny";

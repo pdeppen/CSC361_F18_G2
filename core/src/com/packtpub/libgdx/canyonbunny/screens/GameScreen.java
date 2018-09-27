@@ -1,3 +1,12 @@
+/* Tyler Major
+ * 9/20/2018
+ * pg 230-231-232
+ *  The code that was in the create() and dispose() methods of
+	CanyonBunnyMain have been moved over to the show() and hide() methods,
+	respectively, in order to accommodate the Screen interface. Furthermore, catching
+	Android's back key will be enabled when the game screen is shown and disabled
+	again when the screen is hidden.
+ */
 package com.packtpub.libgdx.canyonbunny.screens;
 
 import com.badlogic.gdx.Game;
@@ -6,7 +15,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.packtpub.libgdx.canyonbunny.game.WorldController;
 import com.packtpub.libgdx.canyonbunny.game.WorldRenderer;
 
-public class GameClass 
+public class GameScreen 
 {
 	
 	public class GameScreen extends AbstractGameScreen 

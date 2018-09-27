@@ -26,8 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
-import com.packtpub.libgdx.canyonbunny.util.CharacterSkin;
-import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
+
 
 public class MenuScreen extends AbstractGameScreen {
 	
@@ -58,8 +57,6 @@ public class MenuScreen extends AbstractGameScreen {
 	private final float DEBUG_REBUILD_INTERVAL = 5.0f;
 	private boolean debugEnabled = false;
 	private float debugRebuildStage;
-	
-	private Skin skinLibgdx;
 	
 	/**
 	 * Made by Philip Deppen (Assignment 6)
@@ -133,8 +130,6 @@ public class MenuScreen extends AbstractGameScreen {
      */
     private void rebuildStage() {
     		skinCanyonBunny = new Skin (Gdx.files.internal(Constants.SKIN_CANYONBUNNY_UI), new TextureAtlas(Constants.TEXTURE_ATLAS_UI);
-    		
-    		skinLibdgdx = new Skin(Gdx.files.internal(Constants.SKIN_LIBDGDX_UI) , new TextureAtlas(Constants.TEXTURE_ATLAS_OBJECTS_LIBGDX_UI));
     		
     		//build all layers
     		Table layerBackground = buildBackgroundLayer();
@@ -258,60 +253,5 @@ public class MenuScreen extends AbstractGameScreen {
     private Table buildOptionsWindowLayer () {
         Table layer = new Table();
         return layer;
-    }
-    
-    /**
-     * Made by Philip Deppen (Assignment 6)
-     */
-    private void loadSettings() {
-    	GamePreferences prefs = GamePreferences.instance;
-        prefs.load();
-        chkSound.setChecked(prefs.sound);
-        sldSound.setValue(prefs.volSound);
-        chkMusic.setChecked(prefs.music);
-        sldMusic.setValue(prefs.volMusic);
-        selCharSkin.setSelectedIndex(prefs.charSkin);
-        onCharSkinSelected(prefs.charSkin);
-        chkShowFpsCounter.setChecked(prefs.showFpsCounter);
-    }
-    
-    /**
-     * Made by Philip Deppen (Assignment 6)
-     */
-    private void saveSettings() {
-    		GamePreferences prefs = GamePreferences.instance;
-    		
-    		prefs.sound = chkSound.isChecked();
-    		prefs.volSound = sldSound.getValue();
-    		prefs.music = chkMusic.isChecked();
-    		prefs.volMusic = sldMusic.getValue();
-    		prefs.charSkin = selCharSkin.getSelectedIndex();
-    		prefs.showFpsCounter = chkShowFpsCounter.isChecked();
-    		prefs.save();
-    }
-    
-    /**
-     * Made by Philip Deppen (Assignment 6)
-     */
-    private void onCharSkinSelected(int index) {
-    		CharacterSkin skin = CharacterSkin.values() (index);
-    		imgCharSkin.setColor(skin.getColor());
-    }
-    
-    /**
-     * Made by Philip Deppen (Assignment 6)
-     */
-    private void onSaveClicked() {
-    		saveSettings();
-    		onCancelClicked();
-    }
-    
-    /**
-     * Made by Philip Deppen (Assignment 6)
-     */
-    private void onCancelClicked() {
-    		btnMenuPlay.setVisible(true);
-    		btnMenuOptions.setVisible(true);
-    		winOptions.setVisible(false);
     }
 }
