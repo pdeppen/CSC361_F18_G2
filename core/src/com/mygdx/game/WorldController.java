@@ -110,9 +110,12 @@ public class WorldController extends InputAdapter
 	}
 	
 	/**
-	 * constructor 
+	 * Updated by Owen Burnham (Assignment 6)
+	 * Creates an instance of WorldController
+	 * The constructor
 	 */
-	public WorldController() {
+	public WorldController(Game game) {
+		this.game = game;
 		init();
 	}
 	
@@ -144,6 +147,7 @@ public class WorldController extends InputAdapter
 	}
 	
 	/**
+	 * Updated by Owen Burnham (Assignment 6)
 	 * contains game logic
 	 * called several hundred times per sec
 	 * @param deltaTime
@@ -153,7 +157,7 @@ public class WorldController extends InputAdapter
 		if (isGameOver()) {
 			timeLeftGameOverDelay -= deltaTime;
 			if (timeLeftGameOverDelay < 0) 
-				init();
+				backToMenu();
 		} 
 		else {
 			handleInputGame(deltaTime);
@@ -219,6 +223,8 @@ public class WorldController extends InputAdapter
 	/**
 	 * Made by Philip Deppen (Assignment 2)
 	 * Edited by Philip Deppen (Assignment 4, 5)
+	 * Edited by Owen Burnham (Assignment 6)
+	 * Now handles escape and back keys
 	 */
 	@Override
 	public boolean keyUp (int keycode) {
@@ -231,6 +237,10 @@ public class WorldController extends InputAdapter
 		else if (keycode == Keys.ENTER) {
 			cameraHelper.setTarget(cameraHelper.hasTarget() ? null: level.bunnyHead);
 		    Gdx.app.debug(TAG, "Camera follow enabled: " + cameraHelper.hasTarget());
+		}
+		// Back to Menu
+		else if (keycode == Keys.ESCAPE || keycode == Keys.BACK) {
+			backToMenu();
 		}
 		
 		return false;
