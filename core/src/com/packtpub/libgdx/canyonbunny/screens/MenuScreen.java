@@ -182,10 +182,25 @@ public class MenuScreen extends AbstractGameScreen {
     
     /**
      * Made by Philip Deppen (Assignment 6)
+     * anchored in the top-left corner
      * @return Table
      */
     private Table buildLogosLayer () {
         Table layer = new Table();
+        layer.left().top();
+        
+        // + Game logo
+        imgLogo = new Image(skinCanyonBunny, "logo");
+        layer.add(imgLogo);
+        layer.row().expandY();
+        
+        // + Info Logos
+        imgInfo = new Image(skinCanyonBunny, "info");
+        layer.add(imgInfo).bottom();
+        
+        if (debugEnabled) {
+        		layer.debug();
+        }
         return layer;
     }
     
@@ -195,6 +210,7 @@ public class MenuScreen extends AbstractGameScreen {
      */
     private Table buildControlsLayer () {
     		Table layer = new Table();
+    		layer.right().bottom();
         return layer;
     }
     
