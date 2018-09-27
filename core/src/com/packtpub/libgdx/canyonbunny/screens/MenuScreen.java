@@ -206,12 +206,43 @@ public class MenuScreen extends AbstractGameScreen {
     
     /**
      * Made by Philip Deppen (Assignment 6)
+     * anchored to the bottom-right corner
      * @return Table
      */
     private Table buildControlsLayer () {
     		Table layer = new Table();
     		layer.right().bottom();
+    		
+    		// + Play Button
+    		btnMenuPlay = new Button(skinCanyonBunny, "play");
+    		layer.add(btnMenuPlay);
+    		btnMenuPlay.addListener(new ChangeListener() {
+    			@Override public void changed (ChangeEvent event, Actor actor) {
+    				onPlayClicked();
+    			}
+    		});
+    		layer.row();
+    		// + Options Button
+    		btnMenuOptions = new Button (skinCanyonBunny, "options");
+    		layer.add(btnMenuOptions);
+    		btnMenuOptions.addListener(new ChangeListener() {
+    			@Override
+    			public void changed (ChangeEvent event, Actor actor) {
+    				onOptionsClicked();
+    			}
+    		});
+    		if (debugEnabled) {
+    			layer.debug();
+    		}
         return layer;
+    }
+    
+    private void onPlayClicked() {
+    		game.setScreen(new GameScreen(game));
+    }
+    
+    private void onOptionsClicked() {
+    	
     }
     
     /**
