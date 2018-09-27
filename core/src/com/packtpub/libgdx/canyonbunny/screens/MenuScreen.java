@@ -151,19 +151,32 @@ public class MenuScreen extends AbstractGameScreen {
     
     /**
      * Made by Philip Deppen (Assignment 6)
+     * draws background image
      * @return Table
      */
     private Table buildBackgroundLayer() {
     		Table layer = new Table();
+    		// + Background
+    		imgBackground = new Image(skinCanyonBunny, "background");
+    		layer.add(imgBackground);
     		return layer;
     }
     
     /**
      * Made by Philip Deppen (Assignment 6)
+     * creates image of coins and bunny head
      * @return Table
      */
     private Table buildObjectsLayer() {
     		Table layer = new Table();
+    		// + Coins
+    		imgCoins = new Image(skinCanyonBunny, "coins");
+    		layer.addActor(imgCoins);
+    		imgCoins.setPosition(135, 80);
+    		// + Bunny
+    		imgBunny = new Image(skinCanyonBunny, "bunny");
+    		layer.addActor(imgBunny);
+    		imgBunny.setPosition(355, 40);
     		return layer;
     }
     
