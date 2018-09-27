@@ -1,5 +1,6 @@
 /**
  * Philip Deppen
+ * edited by Owen Burnham (Assignment 6)
  */
 package com.mygdx.game;
 
@@ -24,9 +25,16 @@ import com.packtpub.libgdx.canyonbunny.game.objects.Feather;
 import com.packtpub.libgdx.canyonbunny.game.objects.GoldCoin;
 import com.packtpub.libgdx.canyonbunny.game.objects.Rock;
 
+import com.badlogic.gdx.Game;
+import com.packtpub.libgdx.canyonbunny.screens.MenuScreen;
+
 /** will need to create package for this */
 /** testing */
 
+/**
+ * The class that is charge of the updates relative
+ * to the game world
+ */
 public class WorldController extends InputAdapter
 {
 	public Level level;
@@ -44,7 +52,7 @@ public class WorldController extends InputAdapter
 	
 	private float timeLeftGameOverDelay;
 	
-	
+	private Game game;
 	
 	/**
 	 * Made by Philip Deppen (Assignment 5)
@@ -321,4 +329,14 @@ public class WorldController extends InputAdapter
 		return level.bunnyHead.position.y < -5;
 	}
 
+	/**
+	 * Created by Owen Burnham (Assignment 6)
+	 * This method allows us to save a reference to 
+	 * the game instance, which will enable us to switch 
+	 * to another screen
+	 */
+	private void backToMenu() {
+		// switch to menu screen
+		game.setScreen(new MenuScreen(game));
+	}
 }
