@@ -16,12 +16,15 @@ import com.packtpub.libgdx.canyonbunny.game.objects.*;
 import com.packtpub.libgdx.canyonbunny.util.*;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
 
-/* @author: Tyler Major
+import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
+
+/** @author: Tyler Major
  * pg 189-190 code
  * The added code creates a second camera that is specifically set up just to render
  * the game's GUI.
  * 
  * Tyler: Updated 9/20/22 Added code from pg222
+ * Edited by Owen Burnham (Assignment 6)
  */
 
 public class WorldRenderer implements Disposable 
@@ -139,7 +142,12 @@ public class WorldRenderer implements Disposable
 		fpsFont.setColor(1, 1, 1, 1); // white
 		}
 	
-	//Tyler: pg193 draws icons to GUI
+	/**
+	 * Tyler: pg193 draws icons to GUI
+	 * Edited by Owen Burnham (Assignment 6)
+	 * @param batch
+	 */
+	
 	private void renderGui (SpriteBatch batch) 
 	{
 		batch.setProjectionMatrix(cameraGUI.combined);
@@ -153,6 +161,8 @@ public class WorldRenderer implements Disposable
 		// draw extra lives icon + text (anchored to top right edge)
 		renderGuiExtraLive(batch);
 		// draw FPS text (anchored to bottom right edge)
+		if (GamePreferences.instance.showFpsCounter)
+			renderGuiFpsCounter(batch);
 		renderGuiFpsCounter(batch);
 		
 		//Tyler added this from page 226. It draws game over text.
