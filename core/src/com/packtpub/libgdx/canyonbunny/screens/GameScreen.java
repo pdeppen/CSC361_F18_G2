@@ -1,6 +1,7 @@
-/* Tyler Major
+/** Tyler Major
  * 9/20/2018
  * pg 230-231-232
+ * Edited by Owen Burnham (Assignment 6)
  *  The code that was in the create() and dispose() methods of
 	CanyonBunnyMain have been moved over to the show() and hide() methods,
 	respectively, in order to accommodate the Screen interface. Furthermore, catching
@@ -14,6 +15,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.packtpub.libgdx.canyonbunny.game.WorldController;
 import com.packtpub.libgdx.canyonbunny.game.WorldRenderer;
+import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
 
 public class GameScreen 
 {
