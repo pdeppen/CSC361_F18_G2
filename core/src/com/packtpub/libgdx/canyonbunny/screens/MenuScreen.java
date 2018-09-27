@@ -26,6 +26,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
+import com.packtpub.libgdx.canyonbunny.util.CharacterSkin;
+import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
 
 public class MenuScreen extends AbstractGameScreen {
 	
@@ -56,6 +58,8 @@ public class MenuScreen extends AbstractGameScreen {
 	private final float DEBUG_REBUILD_INTERVAL = 5.0f;
 	private boolean debugEnabled = false;
 	private float debugRebuildStage;
+	
+	private Skin skinLibgdx;
 	
 	/**
 	 * Made by Philip Deppen (Assignment 6)
@@ -252,5 +256,27 @@ public class MenuScreen extends AbstractGameScreen {
     private Table buildOptionsWindowLayer () {
         Table layer = new Table();
         return layer;
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     */
+    private void loadSettings() {
+    	GamePreferences prefs = GamePreferences.instance;
+        prefs.load();
+        chkSound.setChecked(prefs.sound);
+        sldSound.setValue(prefs.volSound);
+        chkMusic.setChecked(prefs.music);
+        sldMusic.setValue(prefs.volMusic);
+        selCharSkin.setSelectedIndex(prefs.charSkin);
+        onCharSkinSelected(prefs.charSkin);
+        chkShowFpsCounter.setChecked(prefs.showFpsCounter);
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     */
+    private void saveSettings() {
+    		GamePreferences prefs = GamePreferences.instance;
     }
 }
