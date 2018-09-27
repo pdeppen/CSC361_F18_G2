@@ -185,30 +185,29 @@ public class MenuScreen extends AbstractGameScreen {
      * Made by Philip Deppen (Assignment 6)
      * anchored in the top-left corner
      * @return Table
+     * edited by Tyler Major from page 247
+     * This resizes and moves the logos on the home screen
      */
     private Table buildLogosLayer () {
-        Table layer = new Table();
-        layer.left().top();
-        
-        // + Game logo
-        imgLogo = new Image(skinCanyonBunny, "logo");
-        layer.add(imgLogo);
-        layer.row().expandY();
-        
-        // + Info Logos
-        imgInfo = new Image(skinCanyonBunny, "info");
-        layer.add(imgInfo).bottom();
-        
-        if (debugEnabled) {
-        		layer.debug();
-        }
-        return layer;
-    }
+    	Table layer = new Table();
+    	layer.left().top();
+    	// + Game Logo
+    	imgLogo = new Image(skinCanyonBunny, "logo");
+    	layer.add(imgLogo);
+    	layer.row().expandY();
+    	// + Info Logos
+    	imgInfo = new Image(skinCanyonBunny, "info");
+    	layer.add(imgInfo).bottom();
+    	if (debugEnabled) layer.debug();
+    	return layer;
+    	}
     
     /**
      * Made by Philip Deppen (Assignment 6)
      * anchored to the bottom-right corner
      * @return Table
+     * edited by Tyler Major (Assignment 6). Added pg 248 code
+     * anchors play button
      */
     private Table buildControlsLayer () {
     		Table layer = new Table();
@@ -238,10 +237,12 @@ public class MenuScreen extends AbstractGameScreen {
         return layer;
     }
     
+    //Tyler Major added from page 248
     private void onPlayClicked() {
     		game.setScreen(new GameScreen(game));
     }
     
+  //Tyler Major added from page 248
     private void onOptionsClicked() {
     	
     }
