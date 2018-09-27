@@ -20,84 +20,24 @@ import com.packtpub.libgdx.canyonbunny.util.Assets;
  * 
  * Redone by Owen Burnham in Assignment 6
  */
-public class CanyonBunnyMain extends Game{
-	private static final String TAG = 
-	CanyonBunnyMain.class.getName();
-	
-	private com.mygdx.game.WorldController worldController;
-	private WorldRenderer worldRenderer;
-	private boolean paused;
+public class CanyonBunnyMain extends Game {
 	
 	/**
+	 * edited by Owen Burnham (Assignment 6)
 	 * This creates and initializes the controller and renderer
 	 * Will also ensure the game world is active on start and that
 	 * the assets are loaded in
+	 * Additionally LibGDX is instructed through a call of the setScreen()
+	 * method by the Game class to change the current screen.
+	 * We pass a new instance of MenuScreen
 	 */
-	@Override public void create () 
-	{ 
-		// Set Libgdx log level to DEBUG
+	@Override public void create () {
+		// Set Libgdx log level
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		// Load assets
 		Assets.instance.init(new AssetManager());
-		// Initialize controller and renderer
-		worldController = new WorldController();
-		worldRenderer = new WorldRenderer(worldController);
-		// Game world is active on start
-		paused = false;
-		// Load assets
-		Assets.instance.init(new AssetManager());
+		// Start game at menu screen
+		setScreen (new MenuScreen(this));
 	}
-	
-	/**
-	 * Game is rendered and updated when needed
-	 */
-	@Override public void render () 
-	{ 
-		// Do not update game world when paused.
-		if (!paused) {
-		// Update game world by the time that has passed
-		// since last rendered frame.
-		worldController.update(Gdx.graphics.getDeltaTime());
-		}
-		// Sets the clear screen color to: Cornflower Blue
-		Gdx.gl.glClearColor(0x64/255.0f, 0x95/255.0f, 0xed/255.0f, 0xff/255.0f);
-		// Clears the screen
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
-		// Render game world to screen
-		worldRenderer.render();
-	}
-	
-	/**
-	 * This method resizes the world renderer as needed
-	 */
-	@Override public void resize (int width, int height) 
-	{
-		worldRenderer.resize(width, height);
-	}
-	
-	/**
-	 * This method pauses the game
-	 */
-	@Override public void pause () 
-	{ 
-		paused = true;
-	}
-	
-	/**
-	 * This method resumes the game
-	 */
-	@Override public void resume () 
-	{ 
-		paused = false;
-	}
-	
-	/**
-	 * This method disposes the worldRenderer as needed
-	 */
-	@Override public void dispose () 
-	{
-		worldRenderer.dispose();
-		Assets.instance.dispose();
-	}
+
 }
