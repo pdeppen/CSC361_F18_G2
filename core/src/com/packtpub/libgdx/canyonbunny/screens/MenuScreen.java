@@ -66,7 +66,8 @@ public class MenuScreen extends AbstractGameScreen {
 	 * Made by Philip Deppen (Assignment 6)
 	 * @param game
 	 */
-	public MenuScreen (Game game) {
+	public MenuScreen (Game game) 
+	{
 		super(game);
 	}
 	
@@ -77,7 +78,8 @@ public class MenuScreen extends AbstractGameScreen {
 	 * @param deltaTime
 	 */
 	@Override
-	public void render (float deltaTime) {
+	public void render (float deltaTime) 
+	{
 		Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
@@ -100,7 +102,8 @@ public class MenuScreen extends AbstractGameScreen {
 	 * @param height
 	 */
 	@Override 
-	public void resize (int width, int height) {
+	public void resize (int width, int height) 
+	{
 		stage.getViewport().update(width, height, true);
 	}
     
@@ -109,7 +112,8 @@ public class MenuScreen extends AbstractGameScreen {
 	 * called when the screen is shown. initializes the stage
 	 */
 	@Override 
-    public void show () {
+    public void show () 
+	{
 		stage = new Stage(new StretchViewport(Constants.VIEWPORT_GUI_WIDTH, Constants.VIEWPORT_GUI_HEIGHT));
 		Gdx.input.setInputProcessor(stage);
 		rebuildStage();
@@ -120,21 +124,26 @@ public class MenuScreen extends AbstractGameScreen {
 	 * frees the allocated resources when the screen is hidden
 	 */
     @Override 
-    public void hide () {
+    public void hide () 
+    {
     		stage.dispose();
     		skinCanyonBunny.dispose();
     		skinLibgdx.dispose();
     }
      
     @Override 
-    public void pause () { }
+    public void pause () 
+    {
+    	
+    }
     
     /**
      * Made by Philip Deppen (Assignment 6)
      * makes up final screen of the menu screen
      */
-    private void rebuildStage() {
-    		skinCanyonBunny = new Skin (Gdx.files.internal(Constants.SKIN_CANYONBUNNY_UI), new TextureAtlas(Constants.TEXTURE_ATLAS_UI);
+    private void rebuildStage() 
+    {
+    		skinCanyonBunny = new Skin (Gdx.files.internal(Constants.SKIN_CANYONBUNNY_UI), new TextureAtlas(Constants.TEXTURE_ATLAS_UI));
     		
     		skinLibgdx = new Skin (Gdx.files.internal(Constants.SKIN_LIBGDX_UI), new TextureAtlas(Constants.TEXTURE_ATLAS_LIBGDX_UI));
     		
@@ -162,7 +171,8 @@ public class MenuScreen extends AbstractGameScreen {
      * draws background image
      * @return Table
      */
-    private Table buildBackgroundLayer() {
+    private Table buildBackgroundLayer() 
+    {
     		Table layer = new Table();
     		// + Background
     		imgBackground = new Image(skinCanyonBunny, "background");
@@ -175,7 +185,8 @@ public class MenuScreen extends AbstractGameScreen {
      * creates image of coins and bunny head
      * @return Table
      */
-    private Table buildObjectsLayer() {
+    private Table buildObjectsLayer() 
+    {
     		Table layer = new Table();
     		// + Coins
     		imgCoins = new Image(skinCanyonBunny, "coins");
@@ -195,18 +206,19 @@ public class MenuScreen extends AbstractGameScreen {
      * edited by Tyler Major from page 247
      * This resizes and moves the logos on the home screen
      */
-    private Table buildLogosLayer () {
-    	Table layer = new Table();
-    	layer.left().top();
-    	// + Game Logo
-    	imgLogo = new Image(skinCanyonBunny, "logo");
-    	layer.add(imgLogo);
-    	layer.row().expandY();
-    	// + Info Logos
-    	imgInfo = new Image(skinCanyonBunny, "info");
-    	layer.add(imgInfo).bottom();
-    	if (debugEnabled) layer.debug();
-    	return layer;
+    private Table buildLogosLayer () 
+    {
+	    	Table layer = new Table();
+	    	layer.left().top();
+	    	// + Game Logo
+	    	imgLogo = new Image(skinCanyonBunny, "logo");
+	    	layer.add(imgLogo);
+	    	layer.row().expandY();
+	    	// + Info Logos
+	    	imgInfo = new Image(skinCanyonBunny, "info");
+	    	layer.add(imgInfo).bottom();
+	    	if (debugEnabled) layer.debug();
+	    	return layer;
     	}
     
     /**
@@ -216,7 +228,8 @@ public class MenuScreen extends AbstractGameScreen {
      * edited by Tyler Major (Assignment 6). Added pg 248 code
      * anchors play button
      */
-    private Table buildControlsLayer () {
+    private Table buildControlsLayer () 
+    {
     		Table layer = new Table();
     		layer.right().bottom();
     		
@@ -245,29 +258,63 @@ public class MenuScreen extends AbstractGameScreen {
     }
     
     //Tyler Major added from page 248
-    private void onPlayClicked() {
+    private void onPlayClicked() 
+    {
     		game.setScreen(new GameScreen(game));
     }
     
-  //Tyler Major added from page 248
-    private void onOptionsClicked() {
-    	
+    /**
+     * Tyler Major (Assignment 6, page 248)
+     * Edited by: Philip Deppen (Assignment 6, 259)
+     * allows the options window to be opened
+     */
+    private void onOptionsClicked() 
+    {
+    		loadSettings();
+    		btnMenuPlay.setVisible(false);
+    		btnMenuOptions.setVisible(false);
+    		winOptions.setVisible(true);
     }
     
     /**
-     * Made by Philip Deppen (Assignment 6)
+     * Made by Philip Deppen (Assignment 6, p. 259)
+     * initializes the options window
      * @return Table
      */
-    private Table buildOptionsWindowLayer () {
-        Table layer = new Table();
-        return layer;
+    private Table buildOptionsWindowLayer () 
+    {
+		winOptions = new Window("Options", skinLibgdx);
+		// + Audio Settings: Sound/Music CheckBox and Volume Slider
+		winOptions.add(buildOptWinAudioSettings()).row();
+		// + Character Skin: Selection Box (White, Gray, Brown)    
+		
+		winOptions.add(buildOptWinSkinSelection()).row();
+		// + Debug: Show FPS Counter
+		winOptions.add(buildOptWinDebug()).row();
+		// + Separator and Buttons (Save, Cancel)
+		winOptions.add(buildOptWinButtons()).pad(10, 0, 10, 0);
+    
+		// Make options window slightly transparent
+		winOptions.setColor(1, 1, 1, 0.8f);
+		// Hide options window by default
+		winOptions.setVisible(false);
+		if (debugEnabled) 
+			winOptions.debug();
+		// Let TableLayout recalculate widget sizes and positions
+		winOptions.pack();
+		
+		// Move options window to bottom right corner 
+		winOptions.setPosition (Constants.VIEWPORT_GUI_WIDTH - winOptions.getWidth() - 50, 50);
+		
+		return winOptions;
     }
     
     /**
      * Made by Philip Deppen (Assignment 6)
      */
-    private void loadSettings() {
-    	GamePreferences prefs = GamePreferences.instance;
+    private void loadSettings() 
+    {
+    		GamePreferences prefs = GamePreferences.instance;
         prefs.load();
         chkSound.setChecked(prefs.sound);
         sldSound.setValue(prefs.volSound);
@@ -281,7 +328,8 @@ public class MenuScreen extends AbstractGameScreen {
     /**
      * Made by Philip Deppen (Assignment 6)
      */
-    private void saveSettings() {
+    private void saveSettings() 
+    {
     		GamePreferences prefs = GamePreferences.instance;
     		
     		prefs.sound = chkSound.isChecked();
@@ -296,7 +344,8 @@ public class MenuScreen extends AbstractGameScreen {
     /**
      * Made by Philip Deppen (Assignment 6)
      */
-    private void onCharSkinSelected(int index) {
+    private void onCharSkinSelected(int index) 
+    {
     		CharacterSkin skin = CharacterSkin.values() [index];
     		imgCharSkin.setColor(skin.getColor());
     }
@@ -304,7 +353,8 @@ public class MenuScreen extends AbstractGameScreen {
     /**
      * Made by Philip Deppen (Assignment 6)
      */
-    private void onSaveClicked() {
+    private void onSaveClicked() 
+    {
     		saveSettings();
     		onCancelClicked();
     }
@@ -312,7 +362,8 @@ public class MenuScreen extends AbstractGameScreen {
     /**
      * Made by Philip Deppen (Assignment 6)
      */
-    private void onCancelClicked() {
+    private void onCancelClicked() 
+    {
     		btnMenuPlay.setVisible(true);
     		btnMenuOptions.setVisible(true);
     		winOptions.setVisible(false);
@@ -409,13 +460,8 @@ public class MenuScreen extends AbstractGameScreen {
      */
     private Table buildOptWinButtons() 
     {
-    	
-    	winOptions = new Window("Options", skinLibgdx);
-        // + Audio Settings: Sound/Music CheckBox and Volume Slider
-        winOptions.add(buildOptWinAudioSettings()).row();
-        // + Character Skin: Selection Box (White, Gray, Brown)
-        
-    		Table tbl = new Table();
+    
+   		Table tbl = new Table();
     		
     		// + Separator 
     		Label lbl = null;
