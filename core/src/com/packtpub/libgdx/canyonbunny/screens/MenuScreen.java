@@ -24,6 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
 import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
@@ -92,7 +93,7 @@ public class MenuScreen extends AbstractGameScreen {
 		}
 		stage.act(deltaTime);
 		stage.draw();
-		Table.drawDebug(stage);
+		stage.setDebugAll(true);
 	}
 	
 	/**
