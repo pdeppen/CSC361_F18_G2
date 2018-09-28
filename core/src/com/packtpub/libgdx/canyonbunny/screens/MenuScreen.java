@@ -381,5 +381,41 @@ public class MenuScreen extends AbstractGameScreen {
 		return tbl;
     	}
     
+    /**
+     * Made by Philip Deppen (Assignment 6, p. 257)
+     * builds a table that contains the debug settings
+     */
+    private Table buildOptWinDebug()
+    {
+    		Table tbl = new Table();
+    		
+    		// + Title: "Debug"
+    		tbl.pad(10, 10, 0, 10);
+    	    tbl.add(new Label("Debug", skinLibgdx, "default-font", Color.RED)).colspan(3);
+    	    tbl.row();
+    	    tbl.columnDefaults(0).padRight(10);
+    	    tbl.columnDefaults(1).padRight(10);
+    	   
+    	    // + Checkbox, "Show FPS Counter" label
+    	    chkShowFpsCounter = new CheckBox("", skinLibgdx);
+    	    tbl.add(new Label("Show FPS Counter", skinLibgdx));
+    	    tbl.add(chkShowFpsCounter);
+    	    tbl.row();
+    	    return tbl;
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6, p. 257)
+     */
+    private Table buildOptWinButtons() 
+    {
+    		Table tbl = new Table();
+    		
+    		// + Separator 
+    		Label lbl = null;
+    		lbl = new Label ("", skinLibgdx);
+    		
+    		return tbl;
+    }
     
 }
