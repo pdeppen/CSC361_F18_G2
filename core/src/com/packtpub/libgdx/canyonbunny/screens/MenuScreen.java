@@ -26,6 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
+import com.packtpub.libgdx.canyonbunny.util.CharacterSkin;
 
 
 public class MenuScreen extends AbstractGameScreen {
@@ -119,6 +120,7 @@ public class MenuScreen extends AbstractGameScreen {
     public void hide () {
     		stage.dispose();
     		skinCanyonBunny.dispose();
+    		skinLibgdx.dispose();
     }
      
     @Override 
@@ -133,7 +135,7 @@ public class MenuScreen extends AbstractGameScreen {
     		
     		//build all layers
     		Table layerBackground = buildBackgroundLayer();
-    		Table layerObjects = buildOBjectsLayer();
+    		Table layerObjects = buildObjectsLayer();
     		Table layerLogos = buildLogosLayer();
     		Table layerControls = buildControlsLayer();
     		Table layerOptionsWindow = buildOptionsWindowLayer();
@@ -254,5 +256,60 @@ public class MenuScreen extends AbstractGameScreen {
     private Table buildOptionsWindowLayer () {
         Table layer = new Table();
         return layer;
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     */
+    private void loadSettings() {
+    	GamePreferences prefs = GamePreferences.instance;
+        prefs.load();
+        chkSound.setChecked(prefs.sound);
+        sldSound.setValue(prefs.volSound);
+        chkMusic.setChecked(prefs.music);
+        sldMusic.setValue(prefs.volMusic);
+        selCharSkin.setSelectedIndex(prefs.charSkin);
+        onCharSkinSelected(prefs.charSkin);
+        chkShowFpsCounter.setChecked(prefs.showFpsCounter);
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     */
+    private void saveSettings() {
+    		GamePreferences prefs = GamePreferences.instance;
+    		
+    		prefs.sound = chkSound.isChecked();
+    		prefs.volSound = sldSound.getValue();
+    		prefs.music = chkMusic.isChecked();
+    		prefs.volMusic = sldMusic.getValue();
+    		prefs.charSkin = selCharSkin.getSelectedIndex();
+    		prefs.showFpsCounter = chkShowFpsCounter.isChecked();
+    		prefs.save();
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     */
+    private void onCharSkinSelected(int index) {
+    		CharacterSkin skin = CharacterSkin.values() (index);
+    		imgCharSkin.setColor(skin.getColor());
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     */
+    private void onSaveClicked() {
+    		saveSettings();
+    		onCancelClicked();
+    }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     */
+    private void onCancelClicked() {
+    		btnMenuPlay.setVisible(true);
+    		btnMenuOptions.setVisible(true);
+    		winOptions.setVisible(false);
     }
 }
