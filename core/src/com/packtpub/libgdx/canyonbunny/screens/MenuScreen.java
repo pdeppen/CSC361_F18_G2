@@ -318,32 +318,68 @@ public class MenuScreen extends AbstractGameScreen {
     		winOptions.setVisible(false);
     }
     
-    /**
-     * Made by Philip Deppen (Assignment 6)
-     * use and add widgets defined in the LibGDX ski
-     */
-    private Table buildOptWinAudioSettings () {
-        Table tbl = new Table();
-        // + Title: "Audio"
-        tbl.pad(10, 10, 0, 10);
-        tbl.add(new Label("Audio", skinLibgdx, "default-font", Color.ORANGE)).colspan(3);
-        tbl.row();
-        tbl.columnDefaults(0).padRight(10);
-        tbl.columnDefaults(1).padRight(10);
-        // + Checkbox, "Sound" label, sound volume slider
-        chkSound = new CheckBox("", skinLibgdx);
-        tbl.add(chkSound);
-        tbl.add(new Label("Sound", skinLibgdx));
-        sldSound = new Slider(0.0f, 1.0f, 0.1f, false, skinLibgdx);
-        tbl.add(sldSound);
-        tbl.row();
-        // + Checkbox, "Music" label, music volume slider
-        chkMusic = new CheckBox("", skinLibgdx);
-        tbl.add(chkMusic);
-        tbl.add(new Label("Music", skinLibgdx));
-        sldMusic = new Slider(0.0f, 1.0f, 0.1f, false, skinLibgdx);
-        tbl.add(sldMusic);
-        tbl.row();
-        return tbl;
+	/**
+	 * Made by Philip Deppen (Assignment 6)
+	 * use and add widgets defined in the LibGDX ski
+	 */
+	private Table buildOptWinAudioSettings () 
+	{
+	    Table tbl = new Table();
+	    // + Title: "Audio"
+	    tbl.pad(10, 10, 0, 10);
+	    tbl.add(new Label("Audio", skinLibgdx, "default-font", Color.ORANGE)).colspan(3);
+	    tbl.row();
+	    tbl.columnDefaults(0).padRight(10);
+	    tbl.columnDefaults(1).padRight(10);
+	    // + Checkbox, "Sound" label, sound volume slider
+	    chkSound = new CheckBox("", skinLibgdx);
+	    tbl.add(chkSound);
+	    tbl.add(new Label("Sound", skinLibgdx));
+	    sldSound = new Slider(0.0f, 1.0f, 0.1f, false, skinLibgdx);
+	    tbl.add(sldSound);
+	    tbl.row();
+	    // + Checkbox, "Music" label, music volume slider
+	    chkMusic = new CheckBox("", skinLibgdx);
+	    tbl.add(chkMusic);
+	    tbl.add(new Label("Music", skinLibgdx));
+	        sldMusic = new Slider(0.0f, 1.0f, 0.1f, false, skinLibgdx);
+	        tbl.add(sldMusic);
+	        tbl.row();
+	        return tbl;
    }
+    
+	/**
+	 * Made by Philip Deppen (Assignment 6, p. 256)
+	 * creates a table that contains the skin selection via drop down box
+	 * @return Table
+	 */
+    private Table buildOptWinSkinSelection () 
+    {
+		Table tbl = new Table();
+		
+		// + Title: "Character Skin"
+		tbl.pad(10, 10, 0, 10);
+		tbl.add(new Label("Character Skin", skinLibgdx,
+		"default-font", Color.ORANGE)).colspan(2);
+		tbl.row();
+		
+		// + Drop down box filled with skin items
+		selCharSkin = new SelectBox<CharacterSkin>(skinLibgdx);
+		selCharSkin.setItems(CharacterSkin.values());
+		selCharSkin.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) 
+			{
+				onCharSkinSelected(((SelectBox<CharacterSkin>)actor).getSelectedIndex());
+			}
+	     });
+		tbl.add(selCharSkin).width(120).padRight(20);
+		
+		// + Skin preview image
+		imgCharSkin = new Image(Assets.instance.bunny.head);
+		tbl.add(imgCharSkin).width(50).height(50);
+		return tbl;
+    	}
+    
+    
 }
