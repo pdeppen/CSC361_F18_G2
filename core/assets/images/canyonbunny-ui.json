@@ -1,4 +1,3 @@
-//dvsdv]
 {
 com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 play: { down: play-dn, up: play-up },
