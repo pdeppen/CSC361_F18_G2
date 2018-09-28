@@ -26,6 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
+import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
 import com.packtpub.libgdx.canyonbunny.util.CharacterSkin;
 
 
@@ -58,6 +59,8 @@ public class MenuScreen extends AbstractGameScreen {
 	private final float DEBUG_REBUILD_INTERVAL = 5.0f;
 	private boolean debugEnabled = false;
 	private float debugRebuildStage;
+	
+	private Skin skinLibgdx;
 	
 	/**
 	 * Made by Philip Deppen (Assignment 6)
@@ -132,6 +135,8 @@ public class MenuScreen extends AbstractGameScreen {
      */
     private void rebuildStage() {
     		skinCanyonBunny = new Skin (Gdx.files.internal(Constants.SKIN_CANYONBUNNY_UI), new TextureAtlas(Constants.TEXTURE_ATLAS_UI);
+    		
+    		skinLibgdx = new Skin (Gdx.files.internal(Constants.SKIN_LIBGDX_UI), new TextureAtlas(Constants.TEXTURE_ATLAS_LIBGDX_UI));
     		
     		//build all layers
     		Table layerBackground = buildBackgroundLayer();
@@ -292,7 +297,7 @@ public class MenuScreen extends AbstractGameScreen {
      * Made by Philip Deppen (Assignment 6)
      */
     private void onCharSkinSelected(int index) {
-    		CharacterSkin skin = CharacterSkin.values() (index);
+    		CharacterSkin skin = CharacterSkin.values() [index];
     		imgCharSkin.setColor(skin.getColor());
     }
     
@@ -312,4 +317,33 @@ public class MenuScreen extends AbstractGameScreen {
     		btnMenuOptions.setVisible(true);
     		winOptions.setVisible(false);
     }
+    
+    /**
+     * Made by Philip Deppen (Assignment 6)
+     * use and add widgets defined in the LibGDX ski
+     */
+    private Table buildOptWinAudioSettings () {
+        Table tbl = new Table();
+        // + Title: "Audio"
+        tbl.pad(10, 10, 0, 10);
+        tbl.add(new Label("Audio", skinLibgdx, "default-font", Color.ORANGE)).colspan(3);
+        tbl.row();
+        tbl.columnDefaults(0).padRight(10);
+        tbl.columnDefaults(1).padRight(10);
+        // + Checkbox, "Sound" label, sound volume slider
+        chkSound = new CheckBox("", skinLibgdx);
+        tbl.add(chkSound);
+        tbl.add(new Label("Sound", skinLibgdx));
+        sldSound = new Slider(0.0f, 1.0f, 0.1f, false, skinLibgdx);
+        tbl.add(sldSound);
+        tbl.row();
+        // + Checkbox, "Music" label, music volume slider
+        chkMusic = new CheckBox("", skinLibgdx);
+        tbl.add(chkMusic);
+        tbl.add(new Label("Music", skinLibgdx));
+        sldMusic = new Slider(0.0f, 1.0f, 0.1f, false, skinLibgdx);
+        tbl.add(sldMusic);
+        tbl.row();
+        return tbl;
+   }
 }
