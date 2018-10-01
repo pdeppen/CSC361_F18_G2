@@ -164,7 +164,7 @@ public class MenuScreen extends AbstractGameScreen {
     		stack.add(layerObjects);
     		stack.add(layerLogos);
     		stack.add(layerControls);
-    		stack.addActor(layerOptionsWindow);
+    		stage.addActor(layerOptionsWindow);
     }
     
     /**

@@ -50,5 +50,5 @@ public class Constants
 	public static final String SKIN_LIBGDX_UI = "images-ui/uiskin.json"; // 3
 	public static final String SKIN_CANYONBUNNY_UI ="images-ui/canyonbunny-ui.json"; // 1
 
-	public static final String PREFERENCES = null;
+	public static final String PREFERENCES = "CanyonBunny.prefs";
 }
