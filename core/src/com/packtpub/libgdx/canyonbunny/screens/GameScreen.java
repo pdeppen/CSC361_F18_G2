@@ -28,7 +28,7 @@ public class GameScreen extends AbstractGameScreen
 		private boolean paused;
 		public GameScreen (Game game) 
 		{
-		super(game);
+			super(game);
 	    }
 	
 	@Override

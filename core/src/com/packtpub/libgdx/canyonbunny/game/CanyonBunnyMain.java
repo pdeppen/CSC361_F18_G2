@@ -20,7 +20,8 @@ import com.packtpub.libgdx.canyonbunny.util.Assets;
  * 
  * Redone by Owen Burnham in Assignment 6
  */
-public class CanyonBunnyMain extends Game {
+public class CanyonBunnyMain extends Game 
+{
 	
 	/**
 	 * edited by Owen Burnham (Assignment 6)
@@ -31,7 +32,8 @@ public class CanyonBunnyMain extends Game {
 	 * method by the Game class to change the current screen.
 	 * We pass a new instance of MenuScreen
 	 */
-	@Override public void create () {
+	@Override public void create () 
+	{
 		// Set Libgdx log level
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		// Load assets

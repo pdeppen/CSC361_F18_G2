@@ -7,7 +7,8 @@ import com.packtpub.libgdx.canyonbunny.util.Assets;
 
 /**
  * @author Owen Burnham (Assignment 6)
- *
+ * Contains the information that all game screens 
+ * will inherit from
  */
 public abstract class AbstractGameScreen implements Screen {
 	protected Game game;
@@ -17,7 +18,8 @@ public abstract class AbstractGameScreen implements Screen {
 	 * @param game
 	 * Creates an instance of game
 	 */
-	public AbstractGameScreen (Game game) {
+	public AbstractGameScreen (Game game) 
+	{
 		this.game = game;
 	}
 	
@@ -31,7 +33,8 @@ public abstract class AbstractGameScreen implements Screen {
 	 * Owen Burnham (Assignment 6)
 	 * Runs the resume method to resume the game
 	 */
-	public void resume() {
+	public void resume() 
+	{
 		Assets.instance.init(new AssetManager());
 	}
 	
@@ -39,7 +42,8 @@ public abstract class AbstractGameScreen implements Screen {
 	 * Owen Burnham (Assignment 6)
 	 * Runs the dispose method
 	 */
-	public void dispose () {
+	public void dispose () 
+	{
 		Assets.instance.dispose();
 	}
 
