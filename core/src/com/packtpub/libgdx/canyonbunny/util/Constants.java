@@ -43,15 +43,12 @@ public class Constants
 	
 	//Tyler Added this from pg 240. These set up the buttons for the
 	//main menu
-	public static final String TEXTURE_ATLAS_UI =
-			"images/canyonbunny-ui.pack";
-	public static final String TEXTURE_ATLAS_LIBGDX_UI =
-			"images/uiskin.atlas";
-			// Location of description file for skins
-	public static final String SKIN_LIBGDX_UI =
-			"images/uiskin.json";
-	public static final String SKIN_CANYONBUNNY_UI =
-			"images/canyonbunny-ui.json";
+	public static final String TEXTURE_ATLAS_UI = "images-ui/canyonbunny-ui.pack.atlas"; // 2
+	public static final String TEXTURE_ATLAS_LIBGDX_UI = "images-ui/uiskin.atlas"; // 4
+	
+	// Location of description file for skins
+	public static final String SKIN_LIBGDX_UI = "images-ui/uiskin.json"; // 3
+	public static final String SKIN_CANYONBUNNY_UI ="images-ui/canyonbunny-ui.json"; // 1
 
 	public static final String PREFERENCES = null;
 }

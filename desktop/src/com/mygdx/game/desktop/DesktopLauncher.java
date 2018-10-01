@@ -33,12 +33,10 @@ public class DesktopLauncher
 			settings.maxWidth = 1024;
 			settings.maxHeight = 1024;
 			settings.debug = drawDebugOutline;
-			TexturePacker.process(settings, "assets-raw/images",
-			"../CanyonBunny-android/assets/images",
-			"canyonbunny.pack");
-			TexturePacker.process(settings, "assets-raw/images-ui",
-			"../CanyonBunny-android/assets/images",
-			"canyonbunny-ui.pack");
+			TexturePacker.process(settings, "assets-raw/images", "../core/assets/images", "canyonbunny.pack");
+			TexturePacker.process(settings, "assets-raw/images-ui", "../core/assets/images-ui", "canyonbunny-ui.pack");
+			
+
 			}
 		
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
