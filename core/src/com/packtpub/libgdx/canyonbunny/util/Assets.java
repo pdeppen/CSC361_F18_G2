@@ -81,7 +81,8 @@ public class Assets implements Disposable, AssetErrorListener {
 	 * Made by Philip Deppen (Assignment 3)
 	 * initializes objects when constructor is called
 	 */
-	public void init (AssetManager assetManager) {
+	public void init (AssetManager assetManager) 
+	{
 		this.assetManager = assetManager;
 		// set asset manager error handler
 		assetManager.setErrorListener(this);
@@ -128,7 +129,8 @@ public class Assets implements Disposable, AssetErrorListener {
 	 * Made by Philip Deppen (Assignment 3)
 	 * handles an error
 	 */
-	public void error (String filename, Class type, Throwable throwable) {
+	public void error (String filename, Class type, Throwable throwable) 
+	{
 		Gdx.app.error(TAG, "Couldn't load asset: '" + filename + "'", (Exception)throwable);
 	}
 	
@@ -137,7 +139,8 @@ public class Assets implements Disposable, AssetErrorListener {
 	 * handles an error
 	 */
 	@Override
-	public void error (AssetDescriptor asset, Throwable throwable) {
+	public void error (AssetDescriptor asset, Throwable throwable) 
+	{
 		Gdx.app.error(TAG, "Couldn't load asset '" + asset.fileName + "'", (Exception)throwable);
 	}
 	
@@ -167,10 +170,12 @@ public class Assets implements Disposable, AssetErrorListener {
 	}
 	
 	//Tyler Major: Class that loads the bunny head
-	public class AssetBunny{
+	public class AssetBunny
+	{
 		public final AtlasRegion head;
 		
-		public AssetBunny (TextureAtlas atlas) {
+		public AssetBunny (TextureAtlas atlas) 
+		{
 			head = atlas.findRegion("bunny_head");
 		}
 	}
@@ -179,7 +184,8 @@ public class Assets implements Disposable, AssetErrorListener {
 	public class AssetRock {
 		public final AtlasRegion edge;
 		public final AtlasRegion middle;
-		public AssetRock (TextureAtlas atlas) {
+		public AssetRock (TextureAtlas atlas) 
+		{
 			edge = atlas.findRegion("rock_edge");
 			middle = atlas.findRegion("rock_middle");
 		}
@@ -188,16 +194,19 @@ public class Assets implements Disposable, AssetErrorListener {
 	//Tyler Major: Class that loads the gold coin image
 	public class AssetGoldCoin {
 		public final AtlasRegion goldCoin;
-		public AssetGoldCoin (TextureAtlas atlas) {
-		goldCoin = atlas.findRegion("item_gold_coin");
+		public AssetGoldCoin (TextureAtlas atlas) 
+		{
+			goldCoin = atlas.findRegion("item_gold_coin");
 		}
 	}
 	
 	//Tyler Major: Class that loads the feather image
-	public class AssetFeather {
+	public class AssetFeather 
+	{
 		public final AtlasRegion feather;
-		public AssetFeather (TextureAtlas atlas) {
-		feather = atlas.findRegion("item_feather");
+		public AssetFeather (TextureAtlas atlas) 
+		{
+			feather = atlas.findRegion("item_feather");
 		}
 	}
 
