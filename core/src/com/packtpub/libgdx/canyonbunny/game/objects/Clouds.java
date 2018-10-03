@@ -85,7 +85,8 @@ public class Clouds extends AbstractGameObject {
 	 * Edited by Philip Deppen (Assignment 7, p.274)
 	 * picks a random cloud image and creates it
 	 */
-	private Cloud spawnCloud() {
+	private Cloud spawnCloud() 
+	{
 		Cloud cloud = new Cloud();
 		cloud.dimension.set(dimension);
 		
@@ -97,6 +98,16 @@ public class Clouds extends AbstractGameObject {
 		pos.y += 1.75; // base position
 		pos.y += MathUtils.random(0.0f, 0.2f) * (MathUtils.randomBoolean() ? 1: -1); // random additional position
 		cloud.position.set(pos);
+		
+		// speed 
+		Vector2 speed = new Vector2();
+		speed.x += 0.5f; // base speed
+		// random additional speed
+		speed.x += MathUtils.random(0.0f, 0.75f);	
+		cloud.terminalVelocity.set(speed);
+		speed.x *= -1; // move left
+		cloud.velocity.set(speed);
+		
 		return cloud;
 	}
 	
@@ -105,8 +116,21 @@ public class Clouds extends AbstractGameObject {
 	 * render method inherited from AbstractGameObject
 	 */
 	@Override
-	public void render (SpriteBatch batch) {
+	public void render (SpriteBatch batch) 
+	{
 		for (Cloud cloud: clouds)
 			cloud.render(batch);
+	}
+	
+	/**
+	 * Made by Philip Deppen (Assignment 7, p.274-275)
+	 */
+	@Override
+	public void update(float deltaTime)
+	{
+		for (int i = clouds.size - 1; i >= 0; i--)
+		{
+			Cloud cloud = clouds.get(i);
+		}
 	}
 }
