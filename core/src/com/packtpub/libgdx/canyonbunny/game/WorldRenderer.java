@@ -87,21 +87,35 @@ public class WorldRenderer implements Disposable
 		batch.end();
 	}
 	
-	//Tyler: This code adds Gui score to top left of screen
+	/**
+	 * Tyler: This code adds Gui score to top left of screen
+	 * Edited by Philip Deppen (Assignment 7, p.284)
+	 * The value in scoreVisual is cast to an integer value to cut off the fraction. 
+	 * The resulting intermediate value will be the score that is shown in the GUI for the counting-up animation. 
+	 * A sine function is used to let the coin shake.
+	 */
 	private void renderGuiScore (SpriteBatch batch) 
 	{
 		float x = -15;
 		float y = -15;
-		batch.draw(Assets.instance.goldCoin.goldCoin,
-		x, y, 50, 50, 100, 100, 0.35f, -0.35f, 0);
-		Assets.instance.fonts.defaultBig.draw(batch,
-		"" + worldController.score,
-		x + 75, y + 37);
+		float offsetX = 50;
+		float offsetY = 50;
+		
+		if (worldController.scoreVisual < worldController.score) 
+		{
+			long shakeAlpha = System.currentTimeMillis() % 360;
+			float shakeDist = 1.5f;
+			offsetX += MathUtils.sinDeg(shakeAlpha * 2.2f) * shakeDist;
+			offsetY += MathUtils.sinDeg(shakeAlpha * 2.9f) * shakeDist;
+		}
+		batch.draw(Assets.instance.goldCoin.goldCoin, x, y, offsetX, offsetY, 100, 100, 0.35f, -0.35f, 0);
+		Assets.instance.fonts.defaultBig.draw(batch, "" + (int)worldController.scoreVisual, x + 75, y + 37);
 	}
 	
 	/**
 	 * Tyler: This code adds three bunny heads to indicate the lives in the GUI
 	 * Edited by Philip Deppen (Assignment 7, p.282)
+	 * The added code will draw a temporary bunny head icon that is changed in its alpha color, scale, and rotation over time to create the animation.
 	 */
 	private void renderGuiExtraLive (SpriteBatch batch)
 	{
