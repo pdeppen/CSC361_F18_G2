@@ -124,6 +124,9 @@ public class Clouds extends AbstractGameObject {
 	
 	/**
 	 * Made by Philip Deppen (Assignment 7, p.274-275)
+	 * spawnCloud() will create a new cloud/
+	 * This method iterates through all existing clouds to let the physics move them.
+	 * The cloud's position is checked to see if it moved off screen.
 	 */
 	@Override
 	public void update(float deltaTime)
@@ -131,6 +134,14 @@ public class Clouds extends AbstractGameObject {
 		for (int i = clouds.size - 1; i >= 0; i--)
 		{
 			Cloud cloud = clouds.get(i);
+			cloud.update(deltaTime);
+			if (cloud.position.x < -10) 
+			{
+				// cloud moved outside of world
+				// destroy and new cloud at end of level
+				clouds.removeIndex(i);
+				clouds.add(spawnCloud());
+			}
 		}
 	}
 }
