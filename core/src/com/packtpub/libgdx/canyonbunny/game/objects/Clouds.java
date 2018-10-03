@@ -82,6 +82,7 @@ public class Clouds extends AbstractGameObject {
 	
 	/**
 	 * Made by Philip Deppen (Assignment 4)
+	 * Edited by Philip Deppen (Assignment 7, p.274)
 	 * picks a random cloud image and creates it
 	 */
 	private Cloud spawnCloud() {
