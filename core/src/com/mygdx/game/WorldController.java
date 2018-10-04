@@ -161,6 +161,13 @@ public class WorldController extends InputAdapter
 	 * contains game logic
 	 * called several hundred times per sec
 	 * @param deltaTime
+	 * 
+	 * 
+	 * Updated 10/4/2018
+	 * @Author: Tyler Major
+	 * Added the code to update scroll position
+	 * This update allows all three moutain layers to scroll at different speeds
+	 * These speeds are 30%, 50%, and 80%
 	 */
 	public void update(float deltaTime) 
 	{
@@ -186,6 +193,9 @@ public class WorldController extends InputAdapter
 			else
 				initLevel();
 		}
+		
+		level.mountains.updateScrollPosition
+		(cameraHelper.getPosition());
 	}
 	
 	/**
