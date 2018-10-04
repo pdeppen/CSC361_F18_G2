@@ -4,8 +4,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.packtpub.libgdx.canyonbunny.game.objects.AbstractGameObject;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
+import com.badlogic.gdx.math.Vector2;
 
-/* @author: Tyler Major
+/** @author: Tyler Major
+ * edited by Owen Burnham (Assignment 7)
  * pg 171 and 172 creates the mountain class 
  * Code consists of 3 mountains that have their own layer.
  * A tint, color and offset can be specified for each layer.
@@ -24,6 +26,9 @@ public class Mountains extends AbstractGameObject
 	  init();
 	}
 	
+	/**
+	 * initializes the mountain object
+	 */
 	private void init() 
 	{
 		dimension.set(10, 2);
@@ -34,7 +39,16 @@ public class Mountains extends AbstractGameObject
 		length += dimension.x * 2;
 	}
 	
-		private void drawMountain (SpriteBatch batch, float offsetX, float offsetY, float tintColor) 
+		/**
+		 * Edited by Owen Burnham (Assignment 7)
+		 * @param batch
+		 * @param offsetX
+		 * @param offsetY
+		 * @param tintColor
+		 * @param parallaxSpeedX
+		 * draw the mountain based on the given parameters
+		 */
+		private void drawMountain (SpriteBatch batch, float offsetX, float offsetY, float tintColor, float parallaxSpeedX) 
 		{
 			TextureRegion reg = null;
 			batch.setColor(tintColor, tintColor, tintColor, 1);
@@ -42,13 +56,13 @@ public class Mountains extends AbstractGameObject
 			float yRel = dimension.y * offsetY;
 			// mountains span the whole level
 			int mountainLength = 0;
-			mountainLength += MathUtils.ceil(length / (2 * dimension.x));
+			mountainLength += MathUtils.ceil(length / (2 * dimension.x) * (1 - parallaxSpeedX));
 			mountainLength += MathUtils.ceil(0.5f + offsetX);
 			for (int i = 0; i < mountainLength; i++) 
 			{
 				// mountain left
 				reg = regMountainLeft;
-				batch.draw(reg.getTexture(), origin.x + xRel, position.y +
+				batch.draw(reg.getTexture(), origin.x + xRel + position.x * parallaxSpeedX, position.y +
 				origin.y + yRel, origin.x, origin.y, dimension.x, dimension.y,
 				scale.x, scale.y, rotation, reg.getRegionX(), reg.getRegionY(),
 				reg.getRegionWidth(), reg.getRegionHeight(), false, false);
@@ -74,6 +88,17 @@ public class Mountains extends AbstractGameObject
 		drawMountain(batch, 0.25f, 0.25f, 0.7f);
 		// distant mountains (light gray)
 		drawMountain(batch, 0.0f, 0.0f, 0.9f);
+		}
+		
+		/**
+		 * Created by Owen Burnham (Assignment 7)
+		 * @param camPosition
+		 * Updates the scroll position based on the current 
+		 * position of the camera
+		 */
+		public void updateScrollPosition (Vector2 camPosition)
+		{
+			position.set(camPosition.x, position.y);
 		}
 
 		
