@@ -57,6 +57,7 @@ public class BunnyHead extends AbstractGameObject
 	}
 	
 	/**
+	 * Edited by Owen Burnham (Assignment 7)
 	 * Initializes the bunny head game object by setting
 	 * its physics values, a starting view direction, and 
 	 * jump state.  Also deactivates the feather power-up 
@@ -82,6 +83,10 @@ public class BunnyHead extends AbstractGameObject
 		// Power-ups
 		hasFeatherPowerup = false;
 		timeLeftFeatherPowerup = 0;
+		
+		// Particles
+		dustParticles.load(Gdx.files.internal("particles/dustParticle.pfx"),
+				Gdx.files.internal("particles"));
 	}
 	
 	/**
@@ -143,6 +148,7 @@ public class BunnyHead extends AbstractGameObject
 	
 	@Override
 	/**
+	 * Edited by Owen Burnham (Assignment 7)
 	 * Handles the switching of the viewing direction accoriding
 	 * to the current move direction.  The time remaining of the 
 	 * power-up effect is also checked.  If the time is up, the
@@ -166,6 +172,7 @@ public class BunnyHead extends AbstractGameObject
 				setFeatherPowerup(false);
 			}
 		}
+		dustParticles.update(deltaTime);
 	}
 	
 	@Override
@@ -208,6 +215,7 @@ public class BunnyHead extends AbstractGameObject
 	
 	@Override
 	/**
+	 * Edited by Owen Burnham (Assignment 7)
 	 * Edited by Owen Burnham (Assignment 6)
 	 * Handles the drawing of the image for the bunny head
 	 * game object.  Image will be tinted orange if the feather 
@@ -216,6 +224,9 @@ public class BunnyHead extends AbstractGameObject
 	public void render (SpriteBatch batch) 
 	{
 		TextureRegion reg = null;
+		
+		// Draw Particles
+		dustParticles.draw(batch);
 		
 		// Apply Skin Color
 		batch.setColor(
