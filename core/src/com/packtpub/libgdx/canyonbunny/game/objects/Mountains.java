@@ -69,7 +69,7 @@ public class Mountains extends AbstractGameObject
 				xRel += dimension.x;
 				// mountain right
 				reg = regMountainRight;
-				batch.draw(reg.getTexture(),origin.x + xRel, position.y +
+				batch.draw(reg.getTexture(),origin.x + xRel + position.x *parallaxSpeedX, position.y +
 				origin.y + yRel, origin.x, origin.y, dimension.x, dimension.y,
 				scale.x, scale.y, rotation, reg.getRegionX(), reg.getRegionY(),
 				reg.getRegionWidth(), reg.getRegionHeight(), false, false);
@@ -80,14 +80,18 @@ public class Mountains extends AbstractGameObject
 		}
 		
 		@Override
+		/**
+		 * Edited by Owen Burnham (Assignment 7)
+		 * Renders mountains accordingly
+		 */
 		public void render(SpriteBatch batch)
 		{
-		// distant mountains (dark gray)
-		drawMountain(batch, 0.5f, 0.5f, 0.5f);
-		// distant mountains (gray)
-		drawMountain(batch, 0.25f, 0.25f, 0.7f);
-		// distant mountains (light gray)
-		drawMountain(batch, 0.0f, 0.0f, 0.9f);
+		// 80% distant mountains (dark gray)
+		drawMountain(batch, 0.5f, 0.5f, 0.5f, 0.8f);
+		// 50% distant mountains (gray)
+		drawMountain(batch, 0.25f, 0.25f, 0.7f, 0.5f);
+		// 30% distant mountains (light gray)
+		drawMountain(batch, 0.0f, 0.0f, 0.9f, 0.3f);
 		}
 		
 		/**
