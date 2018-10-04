@@ -54,6 +54,8 @@ public class WorldController extends InputAdapter
 	
 	private Game game;
 	
+	public float scoreVisual; //Added from page 284 by Tyler
+	
 	/**
 	 * Made by Philip Deppen (Assignment 5)
 	 * handles collisions between the bunny and rock objects
@@ -166,7 +168,7 @@ public class WorldController extends InputAdapter
 	 * Updated 10/4/2018
 	 * @Author: Tyler Major
 	 * Added the code to update scroll position
-	 * This update allows all three moutain layers to scroll at different speeds
+	 * This update allows all three mountain layers to scroll at different speeds
 	 * These speeds are 30%, 50%, and 80%
 	 * 
 	 * Tyler Major also updated World Renderer with book code pg 280-281
@@ -174,6 +176,9 @@ public class WorldController extends InputAdapter
 	 * This variable will only decrease slowly over time whenever lives are decreased.
 	 * This enables us to play an animation as long as livesVisual has not reached
 	 * current value of lives.
+	 * 
+	 * Tyler Major also added pg284 code to update. This code introduces scoreVisual which
+	 * serves the same purpose as livesVisual does to control the progress of the score animation.
 	 */
 	public void update(float deltaTime) 
 	{
@@ -204,6 +209,8 @@ public class WorldController extends InputAdapter
 		(cameraHelper.getPosition());
 		if (livesVisual > lives)
 			livesVisual = Math.max(lives,  livesVisual -1 * deltaTime);
+		if (scoreVisual < score)
+			scoreVisual = Math.min(score,  scoreVisual + 250 * deltaTime);
 	}
 	
 	/**
@@ -292,6 +299,7 @@ public class WorldController extends InputAdapter
 	private void initLevel() 
 	{
 		score = 0;
+		scoreVisual = score;
 		level = new Level (Constants.LEVEL_01);
 		cameraHelper.setTarget(level.bunnyHead);
 	}
