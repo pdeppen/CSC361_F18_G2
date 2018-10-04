@@ -168,6 +168,12 @@ public class WorldController extends InputAdapter
 	 * Added the code to update scroll position
 	 * This update allows all three moutain layers to scroll at different speeds
 	 * These speeds are 30%, 50%, and 80%
+	 * 
+	 * Tyler Major also updated World Renderer with book code pg 280-281
+	 * This update added the livesVisual code that saves the info of lives
+	 * This variable will only decrease slowly over time whenever lives are decreased.
+	 * This enables us to play an animation as long as livesVisual has not reached
+	 * current value of lives.
 	 */
 	public void update(float deltaTime) 
 	{
@@ -196,6 +202,8 @@ public class WorldController extends InputAdapter
 		
 		level.mountains.updateScrollPosition
 		(cameraHelper.getPosition());
+		if (livesVisual > lives)
+			livesVisual = Math.max(lives,  livesVisual -1 * deltaTime);
 	}
 	
 	/**
