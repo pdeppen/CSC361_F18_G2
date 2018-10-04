@@ -1,7 +1,5 @@
 package com.packtpub.libgdx.canyonbunny.game;
 
-
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
