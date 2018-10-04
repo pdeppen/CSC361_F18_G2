@@ -55,6 +55,7 @@ public class WorldController extends InputAdapter
 	private Game game;
 	
 	public float scoreVisual; //Added from page 284 by Tyler
+	public float livesVisual;
 	
 	/**
 	 * Made by Philip Deppen (Assignment 5)
