@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.packtpub.libgdx.canyonbunny.game.objects.*;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 
 import com.packtpub.libgdx.canyonbunny.util.CharacterSkin;
 import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
@@ -13,6 +14,7 @@ import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
 /**
  * @author Owen Burnham (Assignment 5)
  * edited by Owen Burnham (Assignment 6)
+ * edited by Owen Burnham (Assignment 7)
  * This class is for the bunny head object.
  * It is the player's character and consists of only
  * one image, but has to account for jumping, falling,
@@ -26,6 +28,8 @@ public class BunnyHead extends AbstractGameObject
 	private final float JUMP_TIME_MIN = 0.1f;
 	private final float JUMP_TIME_OFFSET_FLYING = 
 			JUMP_TIME_MAX - 0.018f;
+	
+	public ParticleEffect dustParticles = new ParticleEffect();
 	
 	// different directions views
 	public enum VIEW_DIRECTION { LEFT, RIGHT }
