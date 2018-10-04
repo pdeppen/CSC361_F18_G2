@@ -35,7 +35,8 @@ public class CameraHelper
 	}
 	
 	/**
-	 * updated by Owen Burnham (Assignment 4)
+	 * edited by Owen Burnham (Assignment 4)
+	 * edited by Owen Burnham (Assignment 7)
 	 * @param deltaTime
 	 * updates the camera position as necessary
 	 */
@@ -44,6 +45,8 @@ public class CameraHelper
 	if (!hasTarget()) return;
 	position.x = target.position.x + target.origin.x;
 	position.y = target.position.y + target.origin.y;
+	
+	position.lerp(target.position, FOLLOW_SPEED * deltaTime);
 	
 	//Tyler added this code from pg222
 	// Prevent camera from moving down too far
