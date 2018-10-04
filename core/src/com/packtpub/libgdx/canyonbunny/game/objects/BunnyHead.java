@@ -177,6 +177,7 @@ public class BunnyHead extends AbstractGameObject
 	
 	@Override
 	/**
+	 * Edited by Owen Burnham (Assignment 7)
 	 * Handles the calculations and switching of states that
 	 * is needed to enable jumping and falling
 	 */
@@ -210,7 +211,10 @@ public class BunnyHead extends AbstractGameObject
 			}
 		}
 		if (jumpState != JUMP_STATE.GROUNDED)
+		{	
+			dustParticles.allowCompletion();
 			super.updateMotionY(deltaTime);
+		}	
 	}
 	
 	@Override
