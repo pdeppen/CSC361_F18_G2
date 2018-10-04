@@ -7,21 +7,38 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.packtpub.libgdx.canyonbunny.*;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * Rock consists of left edge, middle part, and a right edge
+ * 
+ * Updated 10/3/2018 @author: Tyler Major
+ * The float variables were added and changes were made in init()
+ * These changes make sure that the following floating mechanism works properly
+ * Starting value of float direction is set to up
+ * The cycle is then randomly picked between 0 and half the max cycle time
+ * Using a random cycle time gives the floating effect a more natural look
  */
-public class Rock extends AbstractGameObject {
+public class Rock extends AbstractGameObject 
+{
 	
 	private TextureRegion regEdge;
 	private TextureRegion regMiddle;
+	
+	private final float FLOAT_CYCLE_TIME = 2.0f;
+	private final float FLOAT_AMPLITUDE = 0.25f;
+	private float floatCycleTimeLeft;
+	private boolean floatingDownwards;
+	private Vector2 floatTargetPosition;
 	
 	private int length;
 	
 	/**
 	 * Made by Philip Deppen (Assignment 4)
 	 */
-	public Rock() {
+	public Rock() 
+	{
 		init();
 	}
 	
@@ -37,6 +54,11 @@ public class Rock extends AbstractGameObject {
 		
 		// Start length of this rock
 		setLength(1);
+		
+		floatingDownwards = false;
+		floatCycleTimeLeft = MathUtils.random(0,
+		FLOAT_CYCLE_TIME / 2);
+		floatTargetPosition = null;
 	}
 	
 	/**
@@ -57,7 +79,8 @@ public class Rock extends AbstractGameObject {
 	 * Made by Philip Deppen (Assignment 4)
 	 * increases length
 	 */
-	public void increaseLength(int amount) {
+	public void increaseLength(int amount) 
+	{
 		setLength(length + amount);
 	}
 	
@@ -66,7 +89,8 @@ public class Rock extends AbstractGameObject {
 	 * method inherited from AbstractGameObject
 	 */
 	@Override 
-	public void render(SpriteBatch batch) {
+	public void render(SpriteBatch batch) 
+	{
 		TextureRegion reg = null;
 		
 		float relX = 0;
