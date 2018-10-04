@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 
 /**
  * @author edited by Owen Burnham (Assignment 4)
+ * editede by Owen Burnham (Assignment 7)
  * CameraHelper assists the camera to be in the right position
  * and therefore displaying the correct image at the right spot.
  */
@@ -20,6 +21,8 @@ public class CameraHelper
 	private float zoom;
 	
 	private AbstractGameObject target;
+	
+	private final float FOLLOW_SPEED = 4.0f;
 	
 	/**
 	 * Creates an instance of CameraHelper with correct
