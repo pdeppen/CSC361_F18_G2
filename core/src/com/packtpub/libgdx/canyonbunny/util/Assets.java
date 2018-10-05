@@ -11,13 +11,16 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.utils.Disposable;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
-
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 
 
 
 /**
  * Philip Deppen
- * Updated by Owen Burnham (Assignment 4)
+ * Edited by Owen Burnham (Assignment 4)
+ * Edited by Owen Burnham (Assignment 8)
+ * Assets class for all the images
  */
 
 
@@ -35,6 +38,9 @@ public class Assets implements Disposable, AssetErrorListener {
 	public AssetFeather feather;
 	public AssetLevelDecoration levelDecoration;
 	public AssetFonts fonts;
+	
+	public AssetSounds sounds;
+	public AssetMusic music;
 	
 	// singleton: prevent instantiation from other classes
 	private Assets() {}
@@ -207,6 +213,20 @@ public class Assets implements Disposable, AssetErrorListener {
 		public AssetFeather (TextureAtlas atlas) 
 		{
 			feather = atlas.findRegion("item_feather");
+		}
+	}
+	
+	public class AssetSounds
+	{
+		public final Sound jump;
+		public final Sound jumpWithFeather;
+		public final Sound pickupCoin;
+		public final Sound pickupFeather;
+		public final Sound liveLost;
+		
+		public AssetSounds (AssetManager am)
+		{
+			jump = am.get("sounds/jump.wav", Sound.class);
 		}
 	}
 
