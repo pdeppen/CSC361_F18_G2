@@ -29,7 +29,7 @@ import com.packtpub.libgdx.canyonbunny.util.Assets;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
 import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
 import com.packtpub.libgdx.canyonbunny.util.CharacterSkin;
-
+import com.packtpub.libgdx.canyonbunny.util.AudioManager;
 
 public class MenuScreen extends AbstractGameScreen {
 	
@@ -353,21 +353,35 @@ public class MenuScreen extends AbstractGameScreen {
     
     /**
      * Made by Philip Deppen (Assignment 6)
+     * 
+     * 
+     * Edited By Tyler Major on 10/7/2018
+     * Added the audio manager instance line on line 366
+     * 
+     * The changes made to the below 2 functions on 10/7/2018
+     * make sure that when the Options menu is closed, the audio manager
+     * will start or stop the music depending on the current audio settings
      */
+    
     private void onSaveClicked() 
     {
     		saveSettings();
     		onCancelClicked();
+    		AudioManager.instance.onSettingsUpdated();
     }
     
     /**
      * Made by Philip Deppen (Assignment 6)
+     * 
+     * Edited by Tyler Major on 10/7/2018
+     * Added code on line 381
      */
     private void onCancelClicked() 
     {
     		btnMenuPlay.setVisible(true);
     		btnMenuOptions.setVisible(true);
     		winOptions.setVisible(false);
+    		AudioManager.instance.onSettingsUpdated();
     }
     
 	/**
