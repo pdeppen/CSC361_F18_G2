@@ -24,6 +24,8 @@ import com.packtpub.libgdx.canyonbunny.game.objects.BunnyHead.JUMP_STATE;
 import com.packtpub.libgdx.canyonbunny.game.objects.Feather;
 import com.packtpub.libgdx.canyonbunny.game.objects.GoldCoin;
 import com.packtpub.libgdx.canyonbunny.game.objects.Rock;
+import com.packtpub.libgdx.canyonbunny.util.Assets;
+import com.packtpub.libgdx.canyonbunny.util.AudioManager;
 
 import com.badlogic.gdx.Game;
 import com.packtpub.libgdx.canyonbunny.screens.MenuScreen;
@@ -180,7 +182,12 @@ public class WorldController extends InputAdapter
 	 * 
 	 * Tyler Major also added pg284 code to update. This code introduces scoreVisual which
 	 * serves the same purpose as livesVisual does to control the progress of the score animation.
+	 * 
+	 * Tyler Added code on page 325-326 (Assignment 8). These changes trigger the sound
+	 * effects for the Life lost, Picked up Gold Coin, and picked up feather at the
+	 * right time.
 	 */
+
 	public void update(float deltaTime) 
 	{
 		handleDebugInput(deltaTime);
@@ -199,6 +206,7 @@ public class WorldController extends InputAdapter
 		cameraHelper.update(deltaTime);
 		if (!isGameOver() && isPlayerInWater()) 
 		{
+			AudioManager.instance.play(Assets.instance.sounds.liveLost);
 			lives--;
 			if (isGameOver())
 				timeLeftGameOverDelay = Constants.TIME_DELAY_GAME_OVER;
