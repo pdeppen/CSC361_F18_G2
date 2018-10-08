@@ -50,9 +50,7 @@ public class CanyonBunnyMain extends Game
 		AudioManager.instance.play(Assets.instance.music.song01);
 		
 		// Start game at menu screen
-		ScreenTransition transition = ScreenTransitionSlice.init(2,
-				ScreenTransitionSlice.UP_DOWN, 10, Interpolation.pow5Out);
-				setScreen(new MenuScreen(this), transition);
+		setScreen(new MenuScreen(this));
 	}
 
 }
