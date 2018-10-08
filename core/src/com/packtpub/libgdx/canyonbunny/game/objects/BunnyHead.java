@@ -7,9 +7,10 @@ import com.packtpub.libgdx.canyonbunny.game.objects.*;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
-
 import com.packtpub.libgdx.canyonbunny.util.CharacterSkin;
 import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
+import com.badlogic.gdx.math.MathUtils;
+import com.packtpub.libgdx.canyonbunny.util.AudioManager;
 
 /**
  * @author Owen Burnham (Assignment 5)
@@ -95,6 +96,13 @@ public class BunnyHead extends AbstractGameObject
 	 * jumping is currently possible and whether it is a 
 	 * single or a multi jump.
 	 * @param jumpKeyPressed
+	 * 
+	 * Tyler Major added pg326-327 code to BunnyHead
+	 * The changes in the code for BunnyHead trigger the sound effects for the jumped and
+     * jumped-in-mid-air events at the right time. The jumpWithFeather sound is played
+     *  using a different play() method of the AudioManager class. It is also provided with
+     *  a random pitch value in the range from 1.0 to 1.1, which adds a little change in the
+     *  frequency, rendering the rapidly repeated sound effect more interesting.
 	 */
 	public void setJumping (boolean jumpKeyPressed) 
 	{
@@ -103,6 +111,7 @@ public class BunnyHead extends AbstractGameObject
 		case GROUNDED: // Character is standind on a platform
 			if (jumpKeyPressed)
 			{
+				AudioManager.instance.play(Assets.instance.sounds.jump);
 				// Start counting jump time from the beginning
 				timeJumping = 0;
 				jumpState = JUMP_STATE.JUMP_RISING;
@@ -116,6 +125,9 @@ public class BunnyHead extends AbstractGameObject
 		case JUMP_FALLING: // Falling down after jump
 			if (jumpKeyPressed && hasFeatherPowerup)
 			{
+				AudioManager.instance.play(
+						Assets.instance.sounds.jumpWithFeather, 1,
+						MathUtils.random(1.0f, 1.1f));
 				timeJumping = JUMP_TIME_OFFSET_FLYING;
 				jumpState = JUMP_STATE.JUMP_RISING;
 			}
