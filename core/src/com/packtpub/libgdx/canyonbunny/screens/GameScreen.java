@@ -2,6 +2,7 @@
  * 9/20/2018
  * pg 230-231-232
  * Edited by Owen Burnham (Assignment 6)
+ * Edited by Owen Burnham (Assignment 9)
  *  The code that was in the create() and dispose() methods of
 	CanyonBunnyMain have been moved over to the show() and hide() methods,
 	respectively, in order to accommodate the Screen interface. Furthermore, catching
@@ -16,6 +17,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.mygdx.game.WorldController;
 import com.packtpub.libgdx.canyonbunny.game.WorldRenderer;
 import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
+
 
 public class GameScreen extends AbstractGameScreen
 {
@@ -71,8 +73,12 @@ public class GameScreen extends AbstractGameScreen
 	}
 	
 	@Override
+	/**
+	 * Edited by Owen Burnham (Assignment 9)
+	 */
 	public void hide() 
 	{
+		worldController.dispose();
 		worldRenderer.dispose();
 		Gdx.input.setCatchBackKey(false);
 	}
