@@ -163,6 +163,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	
 	/**
 	 * Made by Philip Deppen (Assignment 3)
+	 * Edited by Owen Burnham (Assignment 9)
 	 * decorates the atlas
 	 */
 	public class AssetLevelDecoration 
@@ -174,6 +175,14 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final AtlasRegion mountainRight;
 		public final AtlasRegion waterOverlay;
 		
+		public final AtlasRegion carrot;
+		public final AtlasRegion goal;
+		
+		/**
+		 * Edited by Owen Burnham (Assignment 9)
+		 * makes an instance of the texture atlas
+		 * @param atlas
+		 */
 		public AssetLevelDecoration (TextureAtlas atlas) 
 		{
 			cloud01 = atlas.findRegion("cloud01");
@@ -182,6 +191,8 @@ public class Assets implements Disposable, AssetErrorListener {
 			mountainLeft = atlas.findRegion("mountain_left");
 			mountainRight = atlas.findRegion("mountain_right");
 			waterOverlay = atlas.findRegion("water_overlay");
+			carrot = atlas.findRegion("carrot");
+			goal = atlas.findRegion("goal");
 		}
 		
 	}
