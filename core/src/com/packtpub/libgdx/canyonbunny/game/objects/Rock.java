@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Vector2;
  * Rock consists of left edge, middle part, and a right edge
  * 
  * Updated 10/3/2018 @author: Tyler Major
+ * Edited by Owen Burnham (Assignment 9)
  * The float variables were added and changes were made in init()
  * These changes make sure that the following floating mechanism works properly
  * Starting value of float direction is set to up
@@ -123,6 +124,28 @@ public class Rock extends AbstractGameObject
 				   reg.getRegionY(), reg.getRegionWidth(), reg.getRegionHeight(),
 				   true, false);
 	
+	}
+	
+	@Override
+	/**
+	 * Created by Owen Burnham (Assignment 9)
+	 * appropriately updates the rock game object
+	 */
+	public void update (float deltaTime)
+	{
+		super.update(deltaTime);
+		
+		floatCycleTimeLeft -= deltaTime;
+		if (floatCycleTimeLeft <= 0)
+		{
+			floatCycleTimeLeft = FLOAT_CYCLE_TIME;
+			floatingDownwards = !floatingDownwards;
+			body.setLinearVelocity(0, FLOAT_AMPLITUDE * (floatingDownwards ? -1 : 1));
+		}
+		else
+		{
+			body.setLinearVelocity(body.getLinearVelocity().scl(0.98f));
+		}
 	}
 	
 	
