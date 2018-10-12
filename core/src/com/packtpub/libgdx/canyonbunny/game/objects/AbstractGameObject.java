@@ -4,10 +4,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.physics.box2d.Body;
 
 /**
  * @author Owen Burnham (Assignment 4)
  * edited by Owen Burnham (Assignment 5)
+ * edited by Owen Burnham (Assingment 9)
  * This class will hold all the common attributes
  * and fucntionalities that each of our game objects
  * inherit from
@@ -25,6 +27,8 @@ public abstract class AbstractGameObject
 	
 	public Vector2 acceleration;
 	public Rectangle bounds;
+	
+	public Body body;
 	
 	/**
 	 * edited by Owen Burnham (Assignment 5)
@@ -47,6 +51,7 @@ public abstract class AbstractGameObject
 	
 	/**
 	 * updated by Owen Burnham (Assignment 5)
+	 * edited by Owen Burnham (Assignment 9)
 	 * @param deltaTime
 	 * updates objects accordingly in relevance 
 	 * to the delta time
@@ -54,11 +59,19 @@ public abstract class AbstractGameObject
 	 */
 	public void update(float deltaTime) 
 	{
-		updateMotionX(deltaTime);
-		updateMotionY(deltaTime);
-		// Move to new position
-		position.x += velocity.x * deltaTime;
-		position.y += velocity.y * deltaTime;
+		if (body == null)
+		{	
+			updateMotionX(deltaTime);
+			updateMotionY(deltaTime);
+			// Move to new position
+			position.x += velocity.x * deltaTime;
+			position.y += velocity.y * deltaTime;
+		}
+		else
+		{
+			position.set(body.getPosition());
+			rotation = body.getAngle() * MathUtils.radiansToDegrees;
+		}
 	}
 	
 	/**
