@@ -209,6 +209,7 @@ public class WorldController extends InputAdapter
 	 * Tyler Added code on page 325-326 (Assignment 8). These changes trigger the sound
 	 * effects for the Life lost, Picked up Gold Coin, and picked up feather at the
 	 * right time.
+	 * 
 	 */
 
 	public void update(float deltaTime) 
@@ -327,17 +328,21 @@ public class WorldController extends InputAdapter
 	/**
 	 * Made by Philip Deppen (Assignment 4)
 	 * Edited by Philip Deppen (Assignment 5)
+	 * Edited by Philip Deppen (Assignment 9, p.352)
 	 */
 	private void initLevel() 
 	{
 		score = 0;
 		scoreVisual = score;
+		goalReached = false;
 		level = new Level (Constants.LEVEL_01);
 		cameraHelper.setTarget(level.bunnyHead);
+		initPhsyics();
 	}
 	
 	/**
 	 * Made by Philip Deppen (Assignment 5)
+	 * Edited by Philip Deppen (Assignment 9, p.352)
 	 * iterates through all the game objects and tests whether
 	 * there is a collision between the bunny head and another game object
 	 */
@@ -378,6 +383,17 @@ public class WorldController extends InputAdapter
 	       if (!r1.overlaps(r2)) continue;
 	       onCollisionBunnyWithFeather(feather);
 	       break;
+	     }
+	     
+	     // Test collision: Bunny Head <-> Goal
+	     if (!goalReached)
+	     {
+	    	 	r2.set(level.goal.bounds);
+	    	 	r2.x += level.goal.position.x;
+	    	 	r2.y += level.goal.position.y;
+	    	 	
+	    	 	if (r1.overlaps(r2))
+	    	 		onCollisionBunnyWithGoal();
 	     }
 	}
 	
