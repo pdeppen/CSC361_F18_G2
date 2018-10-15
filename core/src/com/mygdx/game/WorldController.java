@@ -132,6 +132,19 @@ public class WorldController extends InputAdapter
 	}
 	
 	/**
+	 * Made by Philip Deppen (Assignment 9, p.351)
+	 * handles the event when the player passes the goal-level object
+	 */
+	private void onCollisionBunnyWithGoal() 
+	{
+		goalReached = true;
+		timeLeftGameOverDelay = Constants.TIME_DELAY_GAME_FINISHED;
+		Vector2 centerPosBunnyHead = new Vector2(level.bunnyHead.position);
+		centerPosBunnyHead.x += level.bunnyHead.bounds.width;
+		spawnCarrots(centerPosBunnyHead, Constants.CARROT_SPAWN_MAX, Constants.CARROT_SPAWN_RADIUS);
+	}
+	
+	/**
 	 * Updated by Owen Burnham (Assignment 6)
 	 * Creates an instance of WorldController
 	 * The constructor
