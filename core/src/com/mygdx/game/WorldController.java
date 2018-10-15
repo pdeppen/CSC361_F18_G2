@@ -210,40 +210,27 @@ public class WorldController extends InputAdapter
 	 * effects for the Life lost, Picked up Gold Coin, and picked up feather at the
 	 * right time.
 	 * 
+	 * Edited by Philip Deppen (Assignment 9, p.353)
+	 * goalReached flag as alternative condition to the isGameover()
+	 * 
 	 */
-
 	public void update(float deltaTime) 
 	{
 		handleDebugInput(deltaTime);
-		if (isGameOver()) 
+		if (isGameOver() || goalReached)
 		{
 			timeLeftGameOverDelay -= deltaTime;
-			if (timeLeftGameOverDelay < 0) 
-				backToMenu();
-		} 
+			if (timeLeftGameOverDelay < 0)
+				backToMenu();	
+		}
 		else 
 		{
 			handleInputGame(deltaTime);
 		}
 		level.update(deltaTime);
 		testCollisions();
+		b2world.step(deltaTime, 8, 3);
 		cameraHelper.update(deltaTime);
-		if (!isGameOver() && isPlayerInWater()) 
-		{
-			AudioManager.instance.play(Assets.instance.sounds.liveLost);
-			lives--;
-			if (isGameOver())
-				timeLeftGameOverDelay = Constants.TIME_DELAY_GAME_OVER;
-			else
-				initLevel();
-		}
-		
-		level.mountains.updateScrollPosition
-		(cameraHelper.getPosition());
-		if (livesVisual > lives)
-			livesVisual = Math.max(lives,  livesVisual -1 * deltaTime);
-		if (scoreVisual < score)
-			scoreVisual = Math.min(score,  scoreVisual + 250 * deltaTime);
 	}
 	
 	/**
