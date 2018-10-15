@@ -457,4 +457,20 @@ public class WorldController extends InputAdapter
 			polygonShape.dispose();
 		}
 	}
+	
+	/**
+	 * Made by Philip Deppen (Assignment 9, p.349)
+	 */
+	private void spawnCarrots (Vector2 pos, int numCarrots, float radius)
+	{
+		float carrotShapeScale = 0.5f;
+		
+		// create carrots with box2d body and fixture
+		for (int i = 0; i < numCarrots; i++)
+		{
+			Carrot carrot = new Carrot();
+			// calculate random spawn position, rotation, and scale
+			float x = MathUtils.random(-radius, radius);
+		}
+	}
 }
