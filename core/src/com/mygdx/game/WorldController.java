@@ -37,8 +37,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.packtpub.libgdx.canyonbunny.game.objects.Carrot;
-/** will need to create package for this */
-/** testing */
+import com.badlogic.gdx.utils.Disposable;
 
 /**
  * The class that is charge of the updates relative
