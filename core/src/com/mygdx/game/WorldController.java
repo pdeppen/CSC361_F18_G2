@@ -43,7 +43,7 @@ import com.badlogic.gdx.utils.Disposable;
  * The class that is charge of the updates relative
  * to the game world
  */
-public class WorldController extends InputAdapter
+public class WorldController extends InputAdapter implements Disposable
 {
 	public Level level;
 	public int lives;
@@ -323,7 +323,7 @@ public class WorldController extends InputAdapter
 		goalReached = false;
 		level = new Level (Constants.LEVEL_01);
 		cameraHelper.setTarget(level.bunnyHead);
-		initPhsyics();
+		initPhysics();
 	}
 	
 	/**
@@ -521,4 +521,15 @@ public class WorldController extends InputAdapter
 			level.carrots.add(carrot);
 		}
 	}
+	
+	/**
+	 * Made by Philip Deppen (Assignment 9, p.355)
+	 */
+	@Override
+	public void dispose() 
+	{
+		if (b2world != null)
+			b2world.dispose();
+	}
+	
 }
