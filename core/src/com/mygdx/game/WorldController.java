@@ -4,7 +4,6 @@
  * edited by Philip Deppen (Assignment 9)
  */
 package com.mygdx.game;
-
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
@@ -25,6 +24,7 @@ import com.packtpub.libgdx.canyonbunny.game.objects.BunnyHead.JUMP_STATE;
 import com.packtpub.libgdx.canyonbunny.game.objects.Feather;
 import com.packtpub.libgdx.canyonbunny.game.objects.GoldCoin;
 import com.packtpub.libgdx.canyonbunny.game.objects.Rock;
+import com.packtpub.libgdx.canyonbunny.game.objects.Carrot;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
 import com.packtpub.libgdx.canyonbunny.util.AudioManager;
 import com.badlogic.gdx.Game;
@@ -140,7 +140,7 @@ public class WorldController extends InputAdapter implements Disposable
 		timeLeftGameOverDelay = Constants.TIME_DELAY_GAME_FINISHED;
 		Vector2 centerPosBunnyHead = new Vector2(level.bunnyHead.position);
 		centerPosBunnyHead.x += level.bunnyHead.bounds.width;
-		spawnCarrots(centerPosBunnyHead, Constants.CARROT_SPAWN_MAX, Constants.CARROT_SPAWN_RADIUS);
+		spawnCarrots(centerPosBunnyHead, Constants.CARROTS_SPAWN_MAX, Constants.CARROTS_SPAWN_RADIUS);
 	}
 	
 	/**
