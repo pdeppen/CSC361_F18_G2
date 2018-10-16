@@ -12,11 +12,13 @@ import com.packtpub.libgdx.canyonbunny.game.objects.Clouds;
 import com.packtpub.libgdx.canyonbunny.game.objects.Mountains;
 import com.packtpub.libgdx.canyonbunny.game.objects.Rock;
 import com.packtpub.libgdx.canyonbunny.game.objects.WaterOverlay;
-
 //Tyler Major added these from pg210 level
 //import com.packtpub.libgdx.canyonbunny.game.objects.BunnyHead;
 import com.packtpub.libgdx.canyonbunny.game.objects.Feather;
 import com.packtpub.libgdx.canyonbunny.game.objects.GoldCoin;
+//Tyler added imports from pg 341 level
+import com.packtpub.libgdx.canyonbunny.game.objects.Carrot;
+import com.packtpub.libgdx.canyonbunny.game.objects.Goal;
 
 
 /* @author: Tyler Major
@@ -27,12 +29,15 @@ import com.packtpub.libgdx.canyonbunny.game.objects.GoldCoin;
 public class Level 
 {
 	public static final String TAG = Level.class.getName();
+	public Goal goal;                   //Tyler added from pg342. Adds a goal variable
+
 	public enum BLOCK_TYPE 
 	{
 		EMPTY(0, 0, 0), // black
 		ROCK(0, 255, 0), // green
 		PLAYER_SPAWNPOINT(255, 255, 255), // white
 		ITEM_FEATHER(255, 0, 255), // purple
+		GOAL(255, 0, 0), // red
 		ITEM_GOLD_COIN(255, 255, 0); // yellow
 		private int color;
 		
@@ -53,15 +58,17 @@ public class Level
 	}
 		// objects
 		public Array<Rock> rocks;
-		
 		public BunnyHead bunnyHead;
 		public Array<GoldCoin> goldcoins;
 		public Array<Feather> feathers;
+		public Array<Carrot> carrots;       //Tyler added from pg342. Creates a carrot array
+  
 		
 		// decoration
 		public Clouds clouds;
 		public Mountains mountains;
 		public WaterOverlay waterOverlay;
+		
 		
 		public Level (String filename) 
 		{
@@ -76,6 +83,7 @@ public class Level
 			rocks = new Array<Rock>();
 			goldcoins = new Array<GoldCoin>();
 			feathers = new Array<Feather>();
+			carrots = new Array<Carrot>();
 			
 			// load image file that represents the level data
 			Pixmap pixmap = new Pixmap(Gdx.files.internal(filename));
@@ -145,6 +153,15 @@ public class Level
 					+ offsetHeight);
 					goldcoins.add((GoldCoin)obj);
 			}
+				// goal
+			else if (BLOCK_TYPE.GOAL.sameColor(currentPixel)) 
+			{
+			obj = new Goal();
+			offsetHeight = -7.0f;
+			obj.position.set(pixelX, baseHeight + offsetHeight);     //Tyler added from page 343. Adds end goal to level. Marked in red on png file
+			goal = (Goal)obj;	
+			}
+				
 			// unknown object/pixel color
 			else {
 				int r = 0xff & (currentPixel >>> 24); //red color channel
