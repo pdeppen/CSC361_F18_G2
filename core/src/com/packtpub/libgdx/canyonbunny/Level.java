@@ -191,10 +191,10 @@ public class Level
 		{
 			// Draw Mountains
 			mountains.render(batch);
-			
+			// Draw Goal
+			goal.render(batch);           //Tyler added from pg344. Renders end goal which was altered in png file to be red
 			// Draw Rocks
 			for (Rock rock : rocks)
-				
 			rock.render(batch);
 			// Draw Gold Coins
 			for (GoldCoin goldCoin : goldcoins)
@@ -202,11 +202,13 @@ public class Level
 			// Draw Feathers
 			for (Feather feather : feathers)
 			feather.render(batch);
+			// Draw Carrots
+			for (Carrot carrot : carrots)
+			carrot.render(batch);              //Tyler added from pg344. Draws carrot
 			// Draw Player Character
 			bunnyHead.render(batch);
 			// Draw Water Overlay
 			waterOverlay.render(batch);
-			
 			// Draw Clouds
 			clouds.render(batch);
 		}
@@ -219,6 +221,8 @@ public class Level
 			goldCoin.update(deltaTime);
 			for(Feather feather : feathers)
 				feather.update(deltaTime);
+			for (Carrot carrot : carrots)
+				carrot. update(deltaTime);    //Tyler added from page344. Adds delata time to carrot array
 			clouds.update(deltaTime);
 			}
 			
