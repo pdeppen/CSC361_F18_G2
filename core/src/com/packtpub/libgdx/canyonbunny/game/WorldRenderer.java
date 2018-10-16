@@ -15,6 +15,7 @@ import com.packtpub.libgdx.canyonbunny.util.*;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
 import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 
 /** @author: Tyler Major
  * pg 189-190 code
@@ -31,6 +32,10 @@ public class WorldRenderer implements Disposable
 	private SpriteBatch batch;
 	private WorldController worldController;
 	private OrthographicCamera cameraGUI;
+	
+	//Tyler added from page 348
+	private static final boolean DEBUG_DRAW_BOX2D_WORLD = false;
+	private Box2DDebugRenderer b2debugRenderer;
 	
 	public WorldRenderer (WorldController worldController) 
 	{ 
@@ -49,6 +54,7 @@ public class WorldRenderer implements Disposable
 				cameraGUI.position.set(0, 0, 0);
 				cameraGUI.setToOrtho(true); // flip y-axis
 				cameraGUI.update();
+		b2debugRenderer = new Box2DDebugRenderer();    //Tyler added from page 348
 	}
 	
 	public void render () 
@@ -83,6 +89,14 @@ public class WorldRenderer implements Disposable
 		batch.begin();
 		worldController.level.render(batch);
 		batch.end();
+		
+		//Tyler added from page 348. Now, debig view can be turned
+		// on and off by setting box2d to true or false
+		if (DEBUG_DRAW_BOX2D_WORLD) 
+		{
+			b2debugRenderer.render(worldController.b2world,
+			camera.combined);
+		}
 	}
 	
 	/**

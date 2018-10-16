@@ -161,9 +161,11 @@ public class Level
 			obj.position.set(pixelX, baseHeight + offsetHeight);     //Tyler added from page 343. Adds end goal to level. Marked in red on png file
 			goal = (Goal)obj;	
 			}
+			
 				
 			// unknown object/pixel color
-			else {
+			else 
+			{
 				int r = 0xff & (currentPixel >>> 24); //red color channel
 				int g = 0xff & (currentPixel >>> 16); //green color channel
 				int b = 0xff & (currentPixel >>> 8); //blue color channel
@@ -174,6 +176,8 @@ public class Level
 			lastPixel = currentPixel;
 		}
 	}
+			
+		
 			// decoration
 			clouds = new Clouds(pixmap.getWidth());
 			clouds.position.set(0, 2);
