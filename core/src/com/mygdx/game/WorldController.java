@@ -220,7 +220,10 @@ public class WorldController extends InputAdapter implements Disposable
 		{
 			timeLeftGameOverDelay -= deltaTime;
 			if (timeLeftGameOverDelay < 0)
+			{
 				backToMenu();	
+				return;
+			}
 		}
 		else 
 		{
@@ -452,6 +455,8 @@ public class WorldController extends InputAdapter implements Disposable
 		if (b2world != null)
 			b2world.dispose();
 		
+	    b2world = new World(new Vector2(0, -9.81f), true);
+	     
 		// Rocks
 		Vector2 origin = new Vector2();
 		
