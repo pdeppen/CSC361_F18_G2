@@ -37,7 +37,7 @@ public class Level
 		ROCK(0, 255, 0), // green
 		PLAYER_SPAWNPOINT(255, 255, 255), // white
 		ITEM_FEATHER(255, 0, 255), // purple
-		GOAL(255, 0, 0), // red
+		GOAL(236, 56, 56), // red
 		ITEM_GOLD_COIN(255, 255, 0); // yellow
 		private int color;
 		
