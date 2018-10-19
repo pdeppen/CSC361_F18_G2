@@ -288,14 +288,14 @@ public class MenuScreen extends AbstractGameScreen
     /**
      * Tyler Major (Assignment 6, page 248)
      * Edited by: Philip Deppen (Assignment 6, 259)
+     * Edited by Owen Burnham (Assignment 10)
      * allows the options window to be opened
      */
     private void onOptionsClicked() 
     {
     		loadSettings();
-    		btnMenuPlay.setVisible(false);
-    		btnMenuOptions.setVisible(false);
-    		winOptions.setVisible(true);
+    		showMenuButtons(false);
+    		showOptionsWindow(true, true);
     }
     
     /**
@@ -394,15 +394,14 @@ public class MenuScreen extends AbstractGameScreen
     
     /**
      * Made by Philip Deppen (Assignment 6)
-     * 
      * Edited by Tyler Major on 10/7/2018
+     * Edited by Owen Burnham (Assignment 10)
      * Added code on line 381
      */
     private void onCancelClicked() 
     {
-    		btnMenuPlay.setVisible(true);
-    		btnMenuOptions.setVisible(true);
-    		winOptions.setVisible(false);
+    		showMenuButtons(true);
+    		showOptionsWindow(false, true);
     		AudioManager.instance.onSettingsUpdated();
     }
     
