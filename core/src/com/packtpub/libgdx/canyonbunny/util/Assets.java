@@ -13,15 +13,15 @@ import com.badlogic.gdx.utils.Disposable;
 import com.packtpub.libgdx.canyonbunny.util.Constants;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-
-
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * Philip Deppen
  * Edited by Owen Burnham (Assignment 4)
  * Edited by Owen Burnham (Assignment 8)
+ * Edited by Philip Deppen (Assignment 10)
  * Assets class for all the images
- * first commit for Chapter 12
  */
 
 
@@ -202,15 +202,29 @@ public class Assets implements Disposable, AssetErrorListener {
 	public class AssetBunny
 	{
 		public final AtlasRegion head;
+		public final Animation animNormal;
+		public final Animation animCopterTransfrom;
+		public final Animation animCopterTransformBack;
+		public final Animation animCopterRotate;
 		
 		public AssetBunny (TextureAtlas atlas) 
 		{
 			head = atlas.findRegion("bunny_head");
+			
+			Array <AtlasRegion> regions = null;
+			AtlasRegion region = null;
+			
+			// Animation: Bunny Normal
+			regions = atlas.findRegions("anim_bunny_normal");
+			animNormal = new Animation(1.0f / 10.0f, regions, Animation.PlayMode.LOOP_PINGPONG);
+			
+			// Animation: Bunny Copter - knot ears
 		}
 	}
 	
 	//Tyler Major: Class that loads the rock edge image and rock middle image
-	public class AssetRock {
+	public class AssetRock 
+	{
 		public final AtlasRegion edge;
 		public final AtlasRegion middle;
 		public AssetRock (TextureAtlas atlas) 
@@ -220,12 +234,29 @@ public class Assets implements Disposable, AssetErrorListener {
 		}
 	}
 	
-	//Tyler Major: Class that loads the gold coin image
-	public class AssetGoldCoin {
+	/**
+	 * Tyler Major: Class that loads the gold coin image
+	 * Edited by Philip Deppen (Assignment 10, p. 383) - Added animation for gold coin
+	 */
+	public class AssetGoldCoin 
+	{
 		public final AtlasRegion goldCoin;
+		public final Animation animGoldCoin;
+		
 		public AssetGoldCoin (TextureAtlas atlas) 
 		{
 			goldCoin = atlas.findRegion("item_gold_coin");
+			
+			// Animation: Gold Coin
+			Array <AtlasRegion> regions = atlas.findRegions("anim_gold_coin");
+			AtlasRegion region = regions.first();
+			
+			for (int i = 0; i < 10; i++) 
+			{
+				regions.insert(0,  region);
+			}
+			
+			animGoldCoin = new Animation (1.0f / 20.0f, regions, Animation.PlayMode.LOOP_PINGPONG);
 		}
 	}
 	
