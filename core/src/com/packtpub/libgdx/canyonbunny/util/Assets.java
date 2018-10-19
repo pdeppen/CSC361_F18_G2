@@ -200,7 +200,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	
 	/**
 	 * Tyler Major: Class that loads the bunny head
-	 * Edited by Philip Deppen (Assignment 9, p.383, 384) - added animation for bunny
+	 * Edited by Philip Deppen (Assignment 10, p.383, 384) - added animation for bunny
 	 */
 	public class AssetBunny
 	{

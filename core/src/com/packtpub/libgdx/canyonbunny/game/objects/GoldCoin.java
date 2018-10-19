@@ -24,7 +24,7 @@ public class GoldCoin extends AbstractGameObject {
 	
 	/**
 	 * Made by Philip Deppen (Assignment 5)
-	 * Edited by Philip Deppen (Assignment 9, p.385)
+	 * Edited by Philip Deppen (Assignment 10, p.385)
 	 * Sets the gold coin animation
 	 */
 	private void init() 
@@ -42,13 +42,14 @@ public class GoldCoin extends AbstractGameObject {
 	
 	/**
 	 * Made by Philip Deppen (Assignment 5)
+	 * Edited by Philip Deppen (Assignment 10, p.386)
 	 */
 	public void render (SpriteBatch batch) 
 	{
 		if (collected) return;
 		
 		TextureRegion reg = null;
-		reg = regGoldCoin;
+		reg = animation.getKeyFrame (stateTime, true);
 		
 		batch.draw(reg.getTexture(), position.x, position.y,
 				   origin.x, origin.y, dimension.x, dimension.y, scale.x, scale.y,
