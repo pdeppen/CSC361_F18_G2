@@ -198,7 +198,10 @@ public class Assets implements Disposable, AssetErrorListener {
 		
 	}
 	
-	//Tyler Major: Class that loads the bunny head
+	/**
+	 * Tyler Major: Class that loads the bunny head
+	 * Edited by Philip Deppen (Assignment 9, p.383, 384) - added animation for bunny
+	 */
 	public class AssetBunny
 	{
 		public final AtlasRegion head;
@@ -219,6 +222,18 @@ public class Assets implements Disposable, AssetErrorListener {
 			animNormal = new Animation(1.0f / 10.0f, regions, Animation.PlayMode.LOOP_PINGPONG);
 			
 			// Animation: Bunny Copter - knot ears
+			regions = atlas.findRegions("anim_bunny_copter");
+			animCopterTransfrom = new Animation (1.0f / 10.0f, regions);
+			
+			// Animation: Bunny Copter - unknot ears
+			regions = atlas.findRegions("anim_bunny_copter");
+			animCopterTransformBack = new Animation (1.0f / 10.0f, regions, Animation.PlayMode.REVERSED);
+			
+			// Animation: Bunny Copter - rotate ears
+			regions = new Array<AtlasRegion>();
+			regions.add(atlas.findRegion("anim_bunny_copter", 4));
+			regions.add(atlas.findRegion("anim_bunny_copter", 5));
+			animCopterRotate = new Animation (1.0f / 15.0f, regions);
 		}
 	}
 	
