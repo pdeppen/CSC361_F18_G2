@@ -536,5 +536,58 @@ public class MenuScreen extends AbstractGameScreen
 	    
 	    return tbl;
     }
+   
+    /**
+     * Created by Owen Burnham (Assignment 10)
+     * Allows us to easily show or hide the menu buttons
+     * @param visible
+     */
+    private void showMenuButtons (boolean visible)
+    {
+    	float moveDuration = 1.0f;
+    	Interpolation moveEasing = Interpolation.swing;
+    	float delayOptionsButton = 0.25f;
+    	
+    	float moveX = 300 * (visible ? -1 : 1);
+    	float moveY = 0 * (visible ? -1 : 1);
+    	final Touchable touchEnabled = visible ? Touchable.enabled
+    			: Touchable.disabled;
+    	btnMenuPlay.addAction(
+    			moveBy(moveX, moveY, moveDuration, moveEasing));
+    	
+    	btnMenuOptions.addAction(sequence(
+    			delay(delayOptionsButton),
+    			moveBy(moveX, moveY, moveDuration, moveEasing)));
+    	
+    	SequenceAction seq = sequence();
+    	if (visible)
+    	seq.addAction(delay(delayOptionsButton + moveDuration));
+    	seq.addAction(run(new Runnable() 
+    	{
+    		public void run () 
+    		{
+    			btnMenuPlay.setTouchable(touchEnabled);
+    			btnMenuOptions.setTouchable(touchEnabled);
+    		}
+    	}));
+    	stage.addAction(seq);
+    }
+    
+    /**
+     * Created by Owen Burnham (Assignment 10)
+     * Allows us to easily show or hide the options window
+     * @param visible
+     * @param animated
+     */
+    private void showOptionsWindow (boolean visible, boolean animated)
+    {
+    	float alphaTo = visible ? 0.8f : 0.0f;
+    	float duration = animated ? 1.0f: 0.0f;
+    	Touchable touchEnabled = visible ? Touchable.enabled
+    			: Touchable.disabled;
+    	winOptions.addAction(sequence(
+    			touchable(touchEnabled),
+    			alpha(alphaTo, duration)));
+    }
     
 }
