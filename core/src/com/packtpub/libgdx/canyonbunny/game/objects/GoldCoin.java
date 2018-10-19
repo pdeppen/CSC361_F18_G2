@@ -7,6 +7,7 @@ package com.packtpub.libgdx.canyonbunny.game.objects;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.packtpub.libgdx.canyonbunny.util.Assets;
+import com.badlogic.gdx.math.MathUtils;
 
 public class GoldCoin extends AbstractGameObject {
 	private TextureRegion regGoldCoin;
@@ -16,18 +17,23 @@ public class GoldCoin extends AbstractGameObject {
 	/**
 	 * Made by Philip Deppen (Assignment 5)
 	 */
-	public GoldCoin() {
+	public GoldCoin() 
+	{
 		init();
 	}
 	
 	/**
 	 * Made by Philip Deppen (Assignment 5)
+	 * Edited by Philip Deppen (Assignment 9, p.385)
+	 * Sets the gold coin animation
 	 */
-	private void init() {
+	private void init() 
+	{
 		dimension.set(0.5f, 0.5f);
 		
-		regGoldCoin = Assets.instance.goldCoin.goldCoin;
-		
+		setAnimation(Assets.instance.goldCoin.animGoldCoin);
+		stateTime = MathUtils.random(0.0f, 1.0f);
+				
 		// set bounding box for collision detection
 		bounds.set(0, 0, dimension.x, dimension.y);
 		
@@ -37,7 +43,8 @@ public class GoldCoin extends AbstractGameObject {
 	/**
 	 * Made by Philip Deppen (Assignment 5)
 	 */
-	public void render (SpriteBatch batch) {
+	public void render (SpriteBatch batch) 
+	{
 		if (collected) return;
 		
 		TextureRegion reg = null;
@@ -53,7 +60,8 @@ public class GoldCoin extends AbstractGameObject {
 	/**
 	 * Made by Philip Deppen (Assignment 5)
 	 */
-	public int getScore() {
+	public int getScore() 
+	{
 		return 100;
 	}
 	
