@@ -1,6 +1,7 @@
 /**
  * Group 2
  * Made by Philip Deppen (Assignment 6)
+ * Edited by Owen Burnham (Assignment 10)
  */
 package com.packtpub.libgdx.canyonbunny.screens;
 
@@ -30,8 +31,11 @@ import com.packtpub.libgdx.canyonbunny.util.Constants;
 import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
 import com.packtpub.libgdx.canyonbunny.util.CharacterSkin;
 import com.packtpub.libgdx.canyonbunny.util.AudioManager;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
+import com.badlogic.gdx.math.Interpolation;
 
-public class MenuScreen extends AbstractGameScreen {
+public class MenuScreen extends AbstractGameScreen 
+{
 	
 	private static final String TAG = MenuScreen.class.getName();
 	private Stage stage;
@@ -183,6 +187,7 @@ public class MenuScreen extends AbstractGameScreen {
     
     /**
      * Made by Philip Deppen (Assignment 6)
+     * Edited by Owen Burnham (Assignment 10)
      * creates image of coins and bunny head
      * @return Table
      */
@@ -192,11 +197,25 @@ public class MenuScreen extends AbstractGameScreen {
     		// + Coins
     		imgCoins = new Image(skinCanyonBunny, "coins");
     		layer.addActor(imgCoins);
-    		imgCoins.setPosition(135, 80);
+    		imgCoins.setOrigin(imgCoins.getWidth() / 2,
+    				imgCoins.getHeight() / 2);
+    		imgCoins.addAction(sequence(
+    				moveTo(135, -20),
+    				scaleTo(0, 0),
+    				fadeOut(0),
+    				delay(2.5f),
+    			parallel(moveBy(0, 100, 0.5f, Interpolation.swingOut),
+    			scaleTo(1.0f, 1.0f, 0.25f, Interpolation.linear),
+    			alpha(1.0f, 0.5f))));
     		// + Bunny
     		imgBunny = new Image(skinCanyonBunny, "bunny");
     		layer.addActor(imgBunny);
-    		imgBunny.setPosition(355, 40);
+    		imgBunny.addAction(sequence(
+    				moveTo(655, 510),
+    				delay(4.0f),
+    				moveBy(-70, -100, 0.5f, Interpolation.fade),
+    				moveBy(-100, -50, 0.5f, Interpolation.fade),
+    				moveBy(-150, -300, 1.0f, Interpolation.elasticIn)));
     		return layer;
     }
     
