@@ -300,6 +300,7 @@ public class MenuScreen extends AbstractGameScreen
     
     /**
      * Made by Philip Deppen (Assignment 6, p. 259)
+     * Edited by Owen Burnham (Assignment 10)
      * initializes the options window
      * @return Table
      */
@@ -319,7 +320,7 @@ public class MenuScreen extends AbstractGameScreen
 		// Make options window slightly transparent
 		winOptions.setColor(1, 1, 1, 0.8f);
 		// Hide options window by default
-		winOptions.setVisible(false);
+		showOptionsWindow(false, false);
 		if (debugEnabled) 
 			winOptions.debug();
 		// Let TableLayout recalculate widget sizes and positions
