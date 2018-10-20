@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.graphics.g2d.Animation;
 
 /**
  * @author Owen Burnham (Assignment 4)
@@ -29,6 +30,8 @@ public abstract class AbstractGameObject
 	public Rectangle bounds;
 	
 	public Body body;
+	public float stateTime;
+	public Animation animation;
 	
 	/**
 	 * edited by Owen Burnham (Assignment 5)
@@ -59,6 +62,7 @@ public abstract class AbstractGameObject
 	 */
 	public void update(float deltaTime) 
 	{
+		stateTime += deltaTime;                   //added from page 284. Allows animation to run
 		if (body == null)
 		{	
 			updateMotionX(deltaTime);
@@ -133,4 +137,23 @@ public abstract class AbstractGameObject
 			// positive or negative terminal velocity
 			velocity.y = MathUtils.clamp(velocity.y, -terminalVelocity.y, terminalVelocity.y);
 	}
+	
+	/*
+	    Added by Tyler Major from page 384.
+	    With these additions, the state time (stateTime) and the currently set
+		animation (animation) are implemented which are used for rendering the game object.
+		A method called setAnimation() was also added that allows you to
+		change the current animation as well as reset the state time to 0. This is desirable
+		because in almost every case, we do not want to start somewhere in the middle of
+		a new animation but instead we want to start right from the beginning at the first
+		frame.
+	 */
+	public void setAnimation (Animation animation) 
+	{
+	this.animation = animation;
+	stateTime = 0;
+	}
+	
+	
+	
 }
