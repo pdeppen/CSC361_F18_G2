@@ -11,6 +11,7 @@ import com.packtpub.libgdx.canyonbunny.util.CharacterSkin;
 import com.packtpub.libgdx.canyonbunny.util.GamePreferences;
 import com.badlogic.gdx.math.MathUtils;
 import com.packtpub.libgdx.canyonbunny.util.AudioManager;
+import com.badlogic.gdx.graphics.g2d.Animation;
 
 /**
  * @author Owen Burnham (Assignment 5)
@@ -49,6 +50,13 @@ public class BunnyHead extends AbstractGameObject
 	public boolean hasFeatherPowerup;
 	public float timeLeftFeatherPowerup;
 	
+	//Tyler added from page 389
+	private Animation animNormal;
+	private Animation animCopterTransform;
+	private Animation animCopterTransformBack;
+	private Animation animCopterRotate;
+	
+	
 	/**
 	 * initializes the bunny head object
 	 */
@@ -68,6 +76,16 @@ public class BunnyHead extends AbstractGameObject
 	{
 		dimension.set(1, 1);
 		regHead = Assets.instance.bunny.head;
+		
+		animNormal = Assets.instance.bunny.animNormal;
+		animCopterTransform = Assets.instance.bunny.animCopterTransform;
+		animCopterTransformBack =
+		Assets.instance.bunny.animCopterTransformBack;
+		animCopterRotate = Assets.instance.bunny.animCopterRotate;
+		setAnimation(animNormal);
+		
+		
+		
 		// Center image on game object
 		origin.set(dimension.x / 2, dimension.y / 2);
 		// Bounding box for collision detection
@@ -174,17 +192,59 @@ public class BunnyHead extends AbstractGameObject
 			viewDirection = velocity.x < 0 ? VIEW_DIRECTION.LEFT :
 				VIEW_DIRECTION.RIGHT;
 		}
-		if (timeLeftFeatherPowerup > 0)
+		if (timeLeftFeatherPowerup > 0)	
 		{
+			if (animation == animCopterTransformBack) {
+				// Restart "Transform" animation if another feather power-up
+				// was picked up during "TransformBack" animation. Otherwise,
+				// the "TransformBack" animation would be stuck while the
+				// power-up is still active.
+				setAnimation(animCopterTransform);
+				}
+			
 			timeLeftFeatherPowerup -= deltaTime;
 			if (timeLeftFeatherPowerup < 0)
 			{
 				// disable power-up
 				timeLeftFeatherPowerup = 0;
 				setFeatherPowerup(false);
+				setAnimation(animCopterTransformBack);
 			}
 		}
 		dustParticles.update(deltaTime);
+		
+		
+		/* Tyler Major added this code from page 390. (Assignment 12)
+		 * These if statements change depending on the animation state that the bunny is currently in
+		 * when is picks up a feather
+		 * All animation states are global variables above
+		 */
+		// Change animation state according to feather power-up
+		if (hasFeatherPowerup)
+		{
+			if (animation == animNormal) 
+			{
+				setAnimation(animCopterTransform);
+			} 
+			else if (animation == animCopterTransform)
+			{
+				if (animation.isAnimationFinished(stateTime))
+					setAnimation(animCopterRotate);
+			}
+		}
+		else 
+		{
+			if (animation == animCopterRotate) 
+			{
+				if (animation.isAnimationFinished(stateTime))
+					setAnimation(animCopterTransformBack);
+			} 
+		else if (animation == animCopterTransformBack)
+		 {
+			if (animation.isAnimationFinished(stateTime))
+				setAnimation(animNormal);
+		 }
+		}
 	}
 	
 	@Override
