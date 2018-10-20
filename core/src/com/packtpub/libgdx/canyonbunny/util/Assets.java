@@ -206,7 +206,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	{
 		public final AtlasRegion head;
 		public final Animation animNormal;
-		public final Animation animCopterTransfrom;
+		public final Animation animCopterTransform;
 		public final Animation animCopterTransformBack;
 		public final Animation animCopterRotate;
 		
@@ -223,7 +223,7 @@ public class Assets implements Disposable, AssetErrorListener {
 			
 			// Animation: Bunny Copter - knot ears
 			regions = atlas.findRegions("anim_bunny_copter");
-			animCopterTransfrom = new Animation (1.0f / 10.0f, regions);
+			animCopterTransform = new Animation (1.0f / 10.0f, regions);
 			
 			// Animation: Bunny Copter - unknot ears
 			regions = atlas.findRegions("anim_bunny_copter");

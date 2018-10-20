@@ -31,6 +31,14 @@ public class BunnyHead extends AbstractGameObject
 	private final float JUMP_TIME_OFFSET_FLYING = 
 			JUMP_TIME_MAX - 0.018f;
 	
+	//Tyler added from page 389
+	// Changes bunny's animation states
+	private Animation animNormal;
+	private Animation animCopterTransform;
+	private Animation animCopterTransformBack;
+	private Animation animCopterRotate;
+	
+	
 	public ParticleEffect dustParticles = new ParticleEffect();
 	
 	// different directions views
@@ -49,12 +57,6 @@ public class BunnyHead extends AbstractGameObject
 	public JUMP_STATE jumpState;
 	public boolean hasFeatherPowerup;
 	public float timeLeftFeatherPowerup;
-	
-	//Tyler added from page 389
-	private Animation animNormal;
-	private Animation animCopterTransform;
-	private Animation animCopterTransformBack;
-	private Animation animCopterRotate;
 	
 	
 	/**
@@ -183,6 +185,9 @@ public class BunnyHead extends AbstractGameObject
 	 * to the current move direction.  The time remaining of the 
 	 * power-up effect is also checked.  If the time is up, the
 	 * feather power-up effect is disabled.
+	 * 
+	 * Tyler Major updated for Assignment 12
+	 * Changes animation state if feather is picked up
 	 */
 	public void update (float deltaTime)
 	{
@@ -301,6 +306,13 @@ public class BunnyHead extends AbstractGameObject
 	 * Handles the drawing of the image for the bunny head
 	 * game object.  Image will be tinted orange if the feather 
 	 * power-up effect is active.
+	 * 
+	 * Updated by Tyler Major on 10/20/2018 with pg_391
+	 *  In the render() method, the color-tinting effect has been removed for
+		new animations. If an animation other than the standard one (animNormal) is
+		detected, the correcting values to the width and heightwill be applied for rendering.
+		Since the standard animation is of a different dimension than the other animations,
+		the other ones will look off-centered without the correcting values.
 	 */
 	public void render (SpriteBatch batch) 
 	{
@@ -312,7 +324,18 @@ public class BunnyHead extends AbstractGameObject
 		// Apply Skin Color
 		batch.setColor(
 				CharacterSkin.values()[GamePreferences.instance.charSkin]
-			.getColor());			
+			.getColor());	
+		
+		float dimCorrectionX = 0;
+		float dimCorrectionY = 0;
+		if (animation != animNormal)
+		{
+			dimCorrectionX = 0.05f;
+			dimCorrectionY = 0.2f;
+		}
+		// Draw image
+		reg = (TextureRegion) animation.getKeyFrame(stateTime, true);
+		
 		
 		// Set special color when game object has a feather power-up
 		if (hasFeatherPowerup)
@@ -323,7 +346,8 @@ public class BunnyHead extends AbstractGameObject
 		// Draw image
 		reg = regHead;
 		batch.draw(reg.getTexture(), position.x, position.y, origin.x, 
-				origin.y, dimension.x, dimension.y, scale.x, scale.y, rotation, 
+				origin.y, dimension.x + dimCorrectionX,
+				dimension.y + dimCorrectionY, scale.x, scale.y, rotation, 
 				reg.getRegionX(), reg.getRegionY(), reg.getRegionWidth(), 
 				reg.getRegionHeight(), viewDirection == VIEW_DIRECTION.LEFT, 
 				false);
