@@ -1,6 +1,7 @@
 package com.packtpub.libgdx.canyonbunny.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.MathUtils;
@@ -31,7 +32,7 @@ public abstract class AbstractGameObject
 	
 	public Body body;
 	public float stateTime;
-	public Animation animation;
+	public Animation<TextureRegion> animation;
 	
 	/**
 	 * edited by Owen Burnham (Assignment 5)
@@ -148,7 +149,7 @@ public abstract class AbstractGameObject
 		a new animation but instead we want to start right from the beginning at the first
 		frame.
 	 */
-	public void setAnimation (Animation animation) 
+	public void setAnimation (Animation<TextureRegion> animation) 
 	{
 	this.animation = animation;
 	stateTime = 0;

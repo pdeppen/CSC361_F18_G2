@@ -33,10 +33,10 @@ public class BunnyHead extends AbstractGameObject
 	
 	//Tyler added from page 389
 	// Changes bunny's animation states
-	private Animation animNormal;
-	private Animation animCopterTransform;
-	private Animation animCopterTransformBack;
-	private Animation animCopterRotate;
+	private Animation<TextureRegion> animNormal;
+	private Animation<TextureRegion> animCopterTransform;
+	private Animation<TextureRegion> animCopterTransformBack;
+	private Animation<TextureRegion> animCopterRotate;
 	
 	
 	public ParticleEffect dustParticles = new ParticleEffect();
@@ -333,8 +333,9 @@ public class BunnyHead extends AbstractGameObject
 			dimCorrectionX = 0.05f;
 			dimCorrectionY = 0.2f;
 		}
+		
 		// Draw image
-		reg = (TextureRegion) animation.getKeyFrame(stateTime, true);
+		reg = animation.getKeyFrame(stateTime, true);
 		
 		
 		// Set special color when game object has a feather power-up
