@@ -345,7 +345,7 @@ public class BunnyHead extends AbstractGameObject
 		}
 		
 		// Draw image
-		reg = regHead;
+		//reg = regHead;
 		batch.draw(reg.getTexture(), position.x, position.y, origin.x, 
 				origin.y, dimension.x + dimCorrectionX,
 				dimension.y + dimCorrectionY, scale.x, scale.y, rotation, 

@@ -229,6 +229,14 @@ public class WorldController extends InputAdapter implements Disposable
 		{
 			handleInputGame(deltaTime);
 		}
+		if (!isGameOver() && isPlayerInWater()) {
+			
+			lives--;
+			if (isGameOver())
+				timeLeftGameOverDelay = Constants.TIME_DELAY_GAME_OVER;
+			else
+				initLevel();
+		}
 		level.update(deltaTime);
 		testCollisions();
 		b2world.step(deltaTime, 8, 3);
